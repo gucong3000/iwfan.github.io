@@ -159,6 +159,7 @@ NexT.utils = NexT.$u = {
    * via comparing location.path with menu item's href.
    */
   addActiveClassToMenuItem: function () {
+    debugger
     var path = window.location.pathname;
     if (path != '/blog/') {
        path = path === '/' ? path : path.substring(0, path.length - 1);
