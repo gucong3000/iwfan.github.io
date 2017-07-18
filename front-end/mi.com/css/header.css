@@ -1,0 +1,215 @@
+/* 广告栏*/
+div.ad-bar {
+	height:120px;
+	background: url(../img/ad.jpg) center center no-repeat;
+}
+div.ad-bar a {
+	width:100%;
+	height:100%;
+	display:block;
+}
+/* 顶部菜单 */
+header.top-menu {
+	background-color: rgb(51,51,51);
+}
+header.top-menu ul.menu {
+	height:40px;
+}
+header.top-menu ul.menu > li {
+	display: inline-block;
+	line-height:35px;
+}
+header.top-menu li a {
+	font-size:12px;
+	color: rgb(176,176,176);
+}
+/* 购物车 */
+header.top-menu ul.menu > li:first-child {
+	float:right;
+	height:100%;
+	width:120px;
+	margin-left:15px;
+	text-align:center;
+	position:relative;
+}
+header.top-menu ul.menu > li:first-child a {
+	width:120px;
+	height:40px;
+	position:absolute;
+	right:0;
+	top:0;
+	background:#424242;
+	z-index:31;
+	line-height:32px;
+	transition:0.1s 0.2s;
+}
+header.top-menu ul.menu > li:first-child a i {
+	font-size:18px;
+	vertical-align:center;
+}
+header.top-menu ul.menu > li:first-child:hover a{
+	background: #FFFFFF;
+	color: #FF6700;
+	transition:0.01s;
+}
+header.top-menu ul.menu > li:first-child:hover section.shopping-car {
+	height:100px;
+	line-height:100px;
+	transition:0.3s;
+}
+header.top-menu ul.menu > li:first-child section.shopping-car {
+	width:316px;
+	height:0px;
+	position: absolute;
+	top:40px;
+	right:0px;
+	z-index:30;
+	color:#424242;
+	box-shadow: 0 0 10px rgba(0,0,0,0.25);
+	line-height:50px;
+	font-size:12px;
+	overflow:hidden;
+	transition:0.3s;
+	background:white;
+}
+/* 登录注册 */
+header.top-menu ul.menu > li:nth-of-type(2) {
+	float:right;
+}
+/* 顶部菜单 */
+header.top-menu li.head-archo a:hover {
+	color: #fff;
+}
+header.top-menu li.head-archo a::after {
+	content:"|";
+	margin:0 2px 0 6px;
+	color: #625852;
+}
+header.top-menu li.head-archo a:last-child::after {
+	content:'';
+}
+
+/*  顶部导航 */
+nav.home-nav ul {
+	height:100px;
+	position:relative;
+	white-space:nowrap;
+}
+nav.home-nav ul li {
+	display:inline-block;
+}
+nav.home-nav ul li.logo {
+	position:absolute;
+	top:23px;
+}
+nav.home-nav ul li.logo a{
+	display:inline-block;
+	width:55px;
+	height:50px;
+	background:url("../img/mi-logo.png") #FF6700 no-repeat center center;
+}
+nav.home-nav ul li.yyymix {
+	position:absolute;
+	left:60px;
+}
+nav.home-nav ul li.yyymix a{
+	display:inline-block;
+	width: 180px;
+    height: 100px;
+	background:url("../img/yyymix.gif") no-repeat center center;
+}
+
+nav.home-nav ul li:nth-of-type(3) {
+	margin-left:245px;
+}
+nav.home-nav ul li.navli a{
+	line-height:100px;
+	font-size:16px;
+	color: #333333;
+	padding:0 8px;
+	position:relative;
+}
+nav.home-nav ul li.navli:hover a{
+	color: #FF6700;
+}
+
+nav.home-nav ul li.search {
+	position:absolute;
+	top:23px;
+	right:0;
+	width:300px;
+	height:50px;
+}
+nav.home-nav ul li.search:hover input[type="text"]{
+	border:1px solid #B0B0B0;
+	transition:0.2s;
+}
+nav.home-nav ul li.search:hover button{
+	border:1px solid #B0B0B0;
+	transition:0.2s;
+}
+nav.home-nav ul li.search form input[type="text"]{
+	padding:0 10px;
+	width:223px;
+	height:48px;
+	border:1px solid #e0e0e0;
+	position:absolute;
+	z-index:10;
+	right:51px;
+	font-size: 14px;
+    line-height: 48px;
+    transition:0.2s;
+}
+nav.home-nav ul li.search form button {
+	width:52px;
+	height:50px;
+	background:#FFFFFF;
+	border:1px solid #e0e0e0;
+	font-size:20px;
+	color:#616161;
+	position:absolute;
+	z-index:10;
+	right:0;
+	transition:0.2s;
+}
+nav.home-nav ul li.search form button i {
+	font-size:25	px;
+	line-height:46px;
+}
+nav.home-nav ul li.search form input[type="text"]:focus{
+	border:1px solid #FF6700;
+	transition:0.2s;
+}
+nav.home-nav ul li.search form input[type="text"]:focus + button {
+	border:1px solid #FF6700;
+	transition:0.2s;
+}
+nav.home-nav ul li.search form input[type="text"]:focus ~ div.suggest-info {
+	opacity:0;
+	/*z-index:5;*/
+	transition:all 0.5s;
+}
+nav.home-nav ul li.search form button:hover {
+	background:#FF6700;
+	color:white;
+	transition:0.2s;
+}
+nav.home-nav ul li.search form div.suggest-info{
+	position:absolute;
+	top:14px;
+	right:55px;
+	opacity:1;
+	z-index:20;
+	transition:all 1s;
+}
+nav.home-nav ul li.search form div.suggest-info a {
+	font-size:12px;
+	background:#EEEEEE;
+	padding:2px 5px;
+	margin-right:5px;
+	color:#757575;
+}
+nav.home-nav ul li.search form div.suggest-info a:hover {
+	color:white;
+	background:#FF6700;
+}

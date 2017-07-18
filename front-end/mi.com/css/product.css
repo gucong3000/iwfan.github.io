@@ -1,0 +1,498 @@
+.product {
+	margin-top:40px;
+	padding-top:60px;
+	width:100%;
+	background:#F5F5F5;
+}
+/* 标题 与 tab切换按钮 */
+.product-section {
+	margin-bottom:20px;
+}
+.product-section .title {
+	position:relative;
+}
+.product-section .title h2{
+	font-weight:normal;
+	font-size:22px;
+	line-height:58px;
+}
+.product-section .title .tab {
+	position:absolute;
+	right:0;
+	top:17px;
+	font-size:0px;
+}
+.product-section .title .tab .tab-item + .tab-item {
+	margin-left:15px;
+}
+.product-section .title .tab .tab-item{
+	padding-bottom:2px;
+	display:inline-block;
+}
+.product-section .title .tab .tab-item:hover {
+	border-bottom:2px solid #ff6709;
+}
+.product-section .title .tab .tab-item:hover a {
+	color: #ff6709;
+}
+.product-section .title .tab .tab-item.current {
+	border-bottom:2px solid #ff6709;
+}
+.product-section .title .tab .tab-item.current a{
+	color: #ff6709;
+}	
+.product-section .title .tab .tab-item a {
+	font-size:16px;
+	color:#424242;
+}
+/* 内容部分 */
+.product-section .content {
+	height:614px;
+	position:relative;
+}
+.product-section .content .aside {
+	position:absolute;
+	top:0;
+	left:0;
+	width:234px;
+}
+.product-section .content .aside li + li {
+	margin-top:14px;
+}
+.product-section .content .aside a{
+	display:block;
+	width:100%;
+	height:100%;
+}
+.product-section .content .aside a img {
+	width:100%;
+	height:100%;
+}
+.product-section .content .content-item{
+	position:absolute;
+	top:0;
+	left:234px;
+}
+.product-section .content .content-item li {
+	width:234px;
+	height:300px;
+	float:left;
+	background:white;
+	margin:0 0 14px 14px;
+	position:relative;
+	overflow:hidden;
+}
+.product-section .content .content-item li a {
+	display:block;
+	text-align:center;
+}
+.product-section .content .content-item li img {
+	display:block;
+	margin:33px auto 20px;
+}
+.product-section .content .content-item li h3 {
+	font-weight:normal;
+	font-size:14px;
+	color:#212121;
+}
+.product-section .content .content-item li .desc {
+	font-size:12px;
+	color:#b0b0b0;
+	margin:5px 0 10px 0;
+}
+.product-section .content .content-item li .price {
+	font-size:14px;
+	color:#ff6709;
+}
+.product-section .content .content-item li .rated {
+	width:100%;
+	height:80px;
+	background:#ff6700;
+	position:absolute;
+	bottom:-80px;
+	opacity:0;
+	transition:all 0.2s;
+}
+.product-section .content .content-item li .rated .rated-info {
+	color:white;
+	font-size:12px;
+	margin:10px 30px 3px 30px;
+}
+.product-section .content .content-item li .rated .author {
+	display:block;
+	color:rgba(255,255,255,0.6);
+	font-size:12px;
+	margin:10px 30px;
+}
+.product-section .content .content-item li:hover .rated{
+	bottom:0px;
+	opacity:1;
+	transition:all 0.3s;
+}
+.product-section .content .content-item li:nth-last-child(2){
+ 	height:143px;
+}
+.product-section .content .content-item li:nth-last-child(2) .describute {
+	float:left;
+	width:110px;
+	margin:50px 0px 30px 30px;
+}
+.product-section .content .content-item li:nth-last-child(2) .describute h3 {
+	width:110px;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.product-section .content .content-item li:nth-last-child(2) img {
+	float:right;
+	margin-top:25px;
+}
+
+.product-section .content .content-item li:nth-last-child(1){
+ 	height:143px;
+}
+
+.product-section .content .content-item li:nth-last-child(1) .describute{
+ 	float:left;
+	width:110px;
+	margin:50px 0px 30px 30px;
+	text-align:left;
+}
+.product-section .content .content-item li:nth-last-child(1) .describute h3 {
+	font-size:18px;
+}
+.product-section .content .content-item li:nth-last-child(1) .describute p {
+	font-size:12px;
+	margin:5px 0;
+	color:#8D8D8D;
+}
+.product-section .content .content-item li:nth-last-child(1) i {
+	float:right;
+	font-size:50px;
+	color:#ff6709;
+	margin:45px 30px 0 0;
+}
+
+.suspension {
+	transition:transform 0.3s;
+}
+.suspension:hover{
+	box-shadow:0 5px 25px 0 rgba(0, 0, 0, 0.15);
+	transform:translatey(-3px);
+	transition:all 0.2s;
+}
+
+/* 为你推荐 */
+.suggest-for-you header {
+	height:58px;
+	position:relative;
+}
+.suggest-for-you header h2 {
+	display:inline-block;
+	font-weight:normal;
+	line-height:58px;
+	color:#333;
+	font-size:22px;
+}
+.suggest-for-you header .prev,
+.suggest-for-you header .next{
+	position:absolute;
+	right:0;
+	top:18px;
+	width:35px;
+	height:22px;
+	text-align:center;
+	line-height:22px;
+	color:#333;
+	border:1px solid #e0e0e0;
+}
+.suggest-for-you header .prev:hover,
+.suggest-for-you header .next:hover{
+	color:#FF6700;
+}
+.suggest-for-you header .prev {
+	right:36px;
+}
+.suggest-for-you .content{
+	white-space:nowrap;
+	height:330px;
+	overflow:hidden;
+	background:#F5F5F5;
+}
+.suggest-for-you .content ul {
+	width:200%;
+	height:300px;
+	margin:10px 0 20px 0;
+}
+.suggest-for-you .content ul li {
+	width:234px;
+	height:300px;
+	background:white;
+	float:left;
+}
+
+.suggest-for-you .content ul li + li {
+	margin-left:14px;
+}
+.suggest-for-you .content ul li:nth-of-type(6){
+	margin-left:0;
+}
+
+.suggest-for-you .content ul li a {
+	display:block;
+	margin:0 auto 22px;
+	text-align:center;
+}
+.suggest-for-you .content ul li a img {
+	margin:40px auto 15px;
+}
+.suggest-for-you .content ul li a .title {
+	font-size:14px;
+	color:#212121;
+}
+.suggest-for-you .content ul li a .price {
+	font-size:14px;
+	color:#ff6709;
+	display:block;
+	margin:5px 0 10px 0;
+}
+.suggest-for-you .content ul li a .desc {
+	font-size:13px;
+	color:#b0b0b0;
+}
+
+
+/* 为你推荐 */
+.host-reate {
+	margin-bottom:20px;
+}
+.host-reate header {
+	height:58px;
+	position:relative;
+}
+.host-reate header h2 {
+	display:inline-block;
+	font-weight:normal;
+	line-height:58px;
+	color:#333;
+	font-size:22px;
+}
+.host-reate .content {
+	width:100%;
+	height:430px;
+}
+.host-reate .content .suspension {
+	height:415px;
+	width:296px;
+	background:white;
+	float:left;
+	position:relative;
+}
+.host-reate .content li + li {
+	margin-left:14px;
+}
+.host-reate .content li figure {
+	margin:0;
+}
+.host-reate .content li figure figcaption {
+	margin:33px 30px 0;
+	font-size:13px;
+	color:#333;
+	line-height:24px;
+}
+.host-reate .content li .goods-info {
+	position:absolute;
+	bottom:30px;
+	width:100%;
+	padding:0 30px;
+}
+.host-reate .content li .goods-info .from {
+	font-size: 12px;
+    color: #b0b0b0;
+}
+.host-reate .content li .goods-info .name {
+	font-size: 14px;
+    color: #333;
+}
+.host-reate .content li .goods-info .sep {
+	color:#e0e0e0;
+	font-size:13px;
+	display:inline-block;
+	margin:0 5px;
+}
+.host-reate .content li .goods-info .gs-price{
+	font-size: 14px;
+    color: #ff6700;
+}
+#sec-content .content, {
+	width:100%;
+	height:420px;
+}
+#sec-content .content .suspension {
+	padding-top:50px;
+	width:296px;
+	height:370px;
+	overflow:hidden;
+	text-align:center;
+}
+#sec-content .content .suspension:first-child {
+	border-top: 1px solid #ffac13;
+	color:#ffac13;
+}
+#sec-content .content .suspension:nth-of-type(2) {
+	border-top: 1px solid #83c44e;
+	color:#83c44e;
+}
+#sec-content .content .suspension:nth-of-type(3) {
+	border-top: 1px solid #e53935;
+	color:#e53935;
+}
+#sec-content .content .suspension:nth-of-type(4) {
+	border-top: 1px solid #2196f3;
+	color:#2196f3;
+}
+#sec-content .content .suspension:hover > .page .prev,
+#sec-content .content .suspension:hover > .page .next{
+	opacity: 1;
+	transition: all 0.2s;
+}
+#sec-content .content .suspension .page {
+	position: absolute;
+	top: 185px;
+	width: 100%;
+	height: 48px;
+}
+#sec-content .content .suspension .page .prev {
+	display: inline-block;
+	height: 100%;
+	width: 20px;
+	float: left;
+	background: #EDEDED;
+	line-height: 48px;
+	color: #fff;
+	opacity: 0;
+}
+#sec-content .content .suspension .page .next {
+	display: inline-block;
+	height: 100%;
+	width: 20px;
+	float: right;
+	background: #EDEDED;
+	line-height: 48px;
+	color: #fff;
+	opacity: 0;
+}
+#sec-content .content .suspension .page .prev:hover,
+#sec-content .content .suspension .page .next:hover{
+	background: rgba(0,0,0,0.35);
+	transition:all 0.2s;
+}
+#sec-content .content .suspension .page-num {
+	width: 100%;
+	height: 20px;
+	text-align: center;
+}
+#sec-content .content .suspension .page-num li {
+	display: inline-block;
+	width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    margin: 0 10px;
+    border: 2px solid #f5f5f5;
+    background-color: #b0b0b0;
+}
+#sec-content .content .suspension .page-num li:hover:not(.active) {
+	background-color: #ff6700;
+}
+#sec-content .content .suspension .page-num li.active {
+	background: white;
+	border: 2px solid #ff6700;
+}
+#sec-content .content .title {
+	font-size:16px;
+	font-weight:normal;
+	margin-bottom:20px;
+}
+#sec-content .content .content-container{
+	width:300%;
+	height:270px;
+	white-space:nowrap;
+} 
+#sec-content .content .content-container .content-item{
+	width:296px;
+	height:100%;
+	float:left;
+	margin:0;
+	text-align:center;
+}
+#sec-content .content .content-container .content-item .btitle {
+	font-size: 20px;
+	color: #333;
+	font-weight: normal;
+}
+#sec-content .content .content-container .content-item .bdesc {
+	font-size: 12px;
+	color: #b0b0b0;
+	margin: 10px 40px;
+	white-space: normal;
+}
+#sec-content .content .content-container .content-item .bprice {
+	font-size: 14px;
+	color: #333;
+}
+#sec-content .content .content-container .content-item img {
+	margin: 10px auto;
+}
+/* 视频 */
+#video {
+	margin-bottom: 0;
+}
+#video .content {
+	height:350px; 
+}
+#video .content .suspension {
+	width:296px;
+	height:285px;
+	overflow:hidden;
+	text-align:center;
+}
+#video .content .suspension figure {
+	width:296px;
+	height:285px;
+	position: relative;
+}
+#video .content .suspension figure .play {
+	position: absolute;
+	top: 150px;
+	left: 20px;
+	display: block;
+	width: 35px;
+	height: 20px;
+	border: 2px solid white;
+	border-radius: 20px;
+	color: white;
+	font-size: 25px;
+	text-align: center;
+	line-height: 20px;
+}
+#video .content .suspension figure .play:hover {
+	background: #ff6700;
+	border: 2px solid #ff6700;
+}
+#video .content .suspension figure .play a {
+	color: white;
+}
+#video .content .suspension figure figcaption h3 a{
+	font-size: 14px;
+	font-weight: normal;
+	color: #333;
+}
+#video .content .suspension figure figcaption h3 a:hover{
+	color: #ff6700;
+}
+#video .content .suspension figure figcaption p {
+	font-size: 12px;
+	color: #b0b0b0;
+	margin: 0;
+}
+

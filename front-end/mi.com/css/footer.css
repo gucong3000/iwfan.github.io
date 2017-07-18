@@ -1,0 +1,167 @@
+.home-footer {
+	width: 100%;
+}
+.foot-head {
+	width: 100%;
+	background: white;
+}
+.foot-head .body .foot-nav{
+	width: 100%;
+	height: 80px;
+	border-bottom: 1px solid #e0e0e0;
+	font-size: 0;
+}
+.foot-head .body .foot-nav .nav-item {
+	display: inline-block;
+	font-size: 18px;
+	width: 244px;
+	height: 25px;
+	text-align: center;
+	line-height: 25px;
+	margin-top: 25px;
+	border-right: 1px solid #e0e0e0;
+}
+.foot-head .body .foot-nav .nav-item:last-child {
+	border: none;
+}
+.foot-head .body .foot-nav .nav-item a {
+	color: #333;
+}
+.foot-head .body .foot-nav .nav-item a:hover {
+	color: #ff6700;
+}
+.foot-head .body .foot-nav .nav-item i {
+	font-size: 25px;
+	vertical-align: top;
+	margin-right: 5px;
+}
+.foot-head .body .nav-info-container {
+	width: 100%;
+	padding: 30px 0;
+	overflow: hidden;
+}
+.foot-head .body .nav-info-container .nav-info {
+	width: 978px;
+	height: 120px;
+	border-right: 1px solid #e0e0e0;
+	float: left;
+}
+.foot-head .body .nav-info-container .nav-info .info-item{
+	float: left;
+	width: 160px;
+	height: 100%;
+}
+.foot-head .body .nav-info-container .nav-info .info-item h3 {
+	font-size: 16px;
+	color: #333;
+	font-weight: normal;
+	margin-bottom: 25px;
+}
+.foot-head .body .nav-info-container .nav-info .info-item a {
+	display: block;
+	color:#757575;
+	font-size: 12px;
+	margin:10px 0;
+}
+.foot-head .body .nav-info-container .nav-info .info-item a:hover {
+	color: #ff6700;
+}
+
+.foot-head .body .nav-info-container .question {
+	float: left;
+	text-align: center;
+	width: 245px;
+	height: 100%;
+}
+.foot-head .body .nav-info-container .question h2 {
+	font-weight: normal;
+	color: #ff6700;
+	font-size: 22px;
+}
+.foot-head .body .nav-info-container .question span {
+	display: block;
+	width: 110px;
+	margin: 5px auto;
+	font-size: 12px;
+	color: #757575;
+}
+.foot-head .body .nav-info-container .question a {
+	display: block;
+	width: 110px;
+	height: 30px;
+	margin: 20px auto;
+	border: 1px solid #ff6700;
+	color: #ff6700;
+	font-size: 12px;
+	text-align: center;
+	line-height: 30px;
+}
+.foot-head .body .nav-info-container .question a:hover {
+	background: #ff6700;
+	color: white;
+}
+.foot-foot{
+	width: 100%;
+	padding: 30px 0 10px 0;
+	background: #F5F5F5;
+	overflow: hidden;
+}
+.foot-foot .content {
+	width: 800px;
+	height: 57px;
+	float: left;
+	overflow: hidden;
+}
+.foot-foot .content .logo {
+	width: 57px;
+	height: 57px;
+	margin-right: 10px;
+	background: #ff6700;
+	float: left;
+}
+.foot-foot .content .text {
+	float: left;
+	font-size: 12px;
+}
+.foot-foot .content .text > a {
+	font-size: 12px;
+	color: #333;
+	margin-right: 3px;
+	line-height: 20px;
+}
+.foot-foot .content .text > a:hover {
+	color: #ff6700;
+}
+.foot-foot .content .text p {
+	margin:0; 
+	font-size: 12px;
+	color: #b0b0b0;
+	line-height: 18px;
+}
+.foot-foot .content .text p a {
+	color: #b0b0b0;
+}
+.foot-foot .content .text p a:hover {
+	color: #ff6700;
+}
+.foot-foot .home-info {
+	height: 57px;
+	width: 380px;
+	float: right;
+	overflow: hidden;
+}
+.foot-foot .home-info a {
+	display: inline-block;
+	width: 21%;
+	height: 100%;
+	float: right;
+	margin-left: 15px;
+}
+.foot-foot .home-desc {
+	float: left;
+	width: 100%;
+	height: 57px;
+	margin-top: 10px;
+	text-align: center;
+	background: url("../img/slogan2016.png") center center no-repeat;
+}
