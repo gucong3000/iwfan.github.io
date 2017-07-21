@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[css盒子模型]]></title>
+    <url>%2Fblog%2F2017%2F07%2F21%2F3ca609d1.html</url>
+    <content type="text"><![CDATA[在HTML文档中，每一个元素都被表示为一个矩形的盒子。在CSS中，使用标准的盒子模型来描述这些矩形盒子。CSS中的盒子模型由content (内容区域)、padding (内边距)、border (边框) 和 margin (外边距)四个部分组成，这四部分决定了盒子所占用空间的大小。标准盒模型如标准盒模型图所示：content 内容区域是包含元素真实内容的区域。它通常包含背景、颜色、文字或者图片。在标准模式下 (box-sizing:content-box;)，内容区域的宽高就是元素的宽高。padding表示的是内容至盒子边框的距离，一般称之为内边距。如果内容区域设置了颜色、背景或者图片，这些样式将会延伸至padding上，内边距可以由padding-top、padding-right、padding-bottom、padding-left 和简写属性 padding 控制。请注意：padding的最小有效值为0，为负值时无效。border 表示盒子的边框，可以由border-[top|right|bottom|left]?-width、border-[top|right|bottom|left]?-style、border-[top|right|bottom|left]?-color 和简写属性 border 控制。margin 表示当前盒子与其他盒子之间的距离，一般称之为外边距。可以由margin-top、margin-right、margin-bottom、margin-left 和简写属性 margin 控制。怪异盒模型上图表示的是怪异模式下的盒子模型，该盒模型的padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值，即使定义有border和padding也不会改变对象的实际宽度。CSS中的盒模型可以通过box-sizing属性来更改。该属性有两个值：content-box 是默认值，该值表现为标准模式下的盒模型。标准模式下盒模型的占用空间等于内容区域加内边距加边框宽度，既Element space usage = Element width + padding + border-width。border-box 该值变现为怪异模式下的盒模型。怪异模式下盒模型的占用空间等于元素的实际宽度，既Element space usage = Element width。注意，对于非替换的行内元素来说，尽管内容周围存在内边距与边框，但其占用空间由 line-height （行高）属性决定。盒子边框阴影的设置盒子边框阴影通过box-shadow 属性设置，有以下几个值。box-shadow:none; 无阴影box-shadow: inset offsetX offsetY vague spread color ，… 可以写多个参数值参数描述inset内阴影，可选参数；offsetX水平方向的偏移量，可为负值；offsetY垂直方向的偏移量，可为负值；vague阴影的模糊程度，不允许为负值；spread阴影的范围，可以为负值；color阴影的颜色；— EOF —]]></content>
+      <categories>
+        <category>CSS</category>
+        <category>盒子模型</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>box model</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[选择器的优先级与特指度]]></title>
+    <url>%2Fblog%2F2017%2F07%2F21%2F7ad7f7c2.html</url>
+    <content type="text"><![CDATA[CSS的冲突规则表明样式的应用是通过最高级别选择器确定的。那么选择器的级别是如何确定的呢？一是通过选择器本身的优先级，第二个就是特指度。选择器的优先级在只有单个选择器，不存在组合选择器的情况下，选择器的优先级一般可以根据以下这条公式来判断：!important &gt; 内联(行内) &gt; ID &gt; (类 | 伪类 | 属性选择器) &gt; 标签 &gt; 通配符 &gt; 继承!important的样式的优先级是最高的，其次就是行内样式（直接写在元素style属性中的样式），接下来是id选择器，然后是class选择器，class选择器、伪类选择器与属性选择器的优先级相同，然后是标签选择器，还有通配符选择器，最后是继承的样式。继承的优先级是最低的；特指度特指度（specificity)：特指度表示一个CSS选择器的重要程度，可以通过一个公式来计算出一个数值，数值越大，越重要；这个计算公式叫做 I - C -E 公式 (id-class-element)；即，针对一个css选择器表达式，遇到一个id就往特指度数值中加100，遇到一个class就往特指度数值中加10，遇到一个element就往特指度数值中加1。CSS选择器表达式特指度计算结果div1div.box11div#box101div p #box102div p #box ul .cls113div p #box ul .cls li114!important 最高，高于一切继承优先级最低小结通过优先级与特指度可以发现一个规律，既选择器选择的元素范围越小，或者样式应用的越具体那么这个选择器（样式）的级别就越高；— EOF —]]></content>
+      <categories>
+        <category>CSS</category>
+        <category>选择器</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>selector</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[css常用选择器（二）]]></title>
     <url>%2Fblog%2F2017%2F07%2F14%2Fcd433391.html</url>
     <content type="text"><![CDATA[CSS伪类选择器常用的伪类选择器有动态伪类选择器、目标伪类选择器、否定伪类选择器、结构伪类选择器、UI元素状态伪类选择器和语言伪类选择器。动态伪类选择器选择器功能描述a:link常用于选择未被访问过的a链接a:visited常用于选择已经被访问过的a链接E:hover选择鼠标悬停的E元素E:active选择被用户激活的E元素（鼠标点击至鼠标释放之间）E:focus选择获取到鼠标焦点的E元素锚点伪类的设置必须遵循一个 “爱恨原则” LoVe/HAte，也就是“link-visited-hover-active”。目标伪类选择器选择器功能描述E:target选择正在活动的E元素（通过锚点元素，跳转到E元素时）否定伪类选择器选择器功能描述E:not(selector)从选中的E元素中，剔除掉selector选中的元素结构伪类选择器选择器功能描述E F:first-of-type选择 E元素下，第一个类型为F的元素。E F:last-of-type选择 E 元素下,最后一个类型为F的元素。E F:nth-of-type(n)选择 E 元素下，第n个类型为F的元素。E F:nth-of-last-type(n)同上，倒数。E F:first-child选择E元素的第一个子元素F，若F不是第一个子元素，则无法选中。与E F:nth-child(1)相同。E F:last-child选择E元素的最后一个子元素F，若F不是最后一个子元素，则无法选中。与E F:nth-last-child(1)相同。E F:nth-child(n)选择E元素下第n个F元素。其中n可以为整数，也可以为even（偶数）、odd（奇数），还可以为公式（2n+1）。E F:nth-last-child(n)同上，不过是从后往前数。E:root选择E元素的根元素，在Html中，根元素始终为html。E:empty选择没有任何内容的E元素。UI元素状态伪类选择器选择器功能描述E:chceked选择选中的多选按钮或单选按钮E:enabled选择启用的表单元素E:disabled选择禁用的表单元素语言伪类选择器选择器功能描述E:lang(language)从选中的E元素中，获取lang的属性值为language的元素。CSS伪元素选择器CSS的伪元素选择器常用的有以下几种：选择器功能描述E::before相当于在元素的内容之前插入一个行内元素，使用时必须使用content属性E::after相当于在元素的内容之后插入一个行内元素，使用时必须使用content属性E::first-line选择元素的第一行内容E::first-letter选择元素的第一个字，经常用来做首字下沉E::selection选择被用户选中的内容123456789101112131415161718192021222324252627282930313233343536373839&lt;style type="text/css"&gt; p&#123; width: 500px; &#125; /*设置p段落第一行样式*/ p::first-line &#123; font-size: 18px; color:deepskyblue; &#125; /*设置p段落的第一个字为首字下沉*/ p::first-letter &#123; float:left; font-size: 36px; &#125; /*before 相当于在 p元素的内容前，插入一个行内元素， 使用该选择器，必须有content 属性*/ p::before &#123; content: "&#123;"; font-size: 72px; &#125; /*与before相似，不过插入位置是在内容最后*/ p::after &#123; content: "&#125;"; font-size: 72px; &#125; /*设置p段落在鼠标选中时的样式*/ p::selection&#123; color: red; background-color: green; &#125;&lt;/style&gt;...&lt;p&gt; Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem. In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.&lt;/p&gt;— EOF —]]></content>
