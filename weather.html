@@ -338,10 +338,10 @@
 			display: block;
 			height: 70px;
 			width: 70px;
-			/*background: red;*/
 			margin:50px 40px;
 			border-radius: 70px 0 0 0;
 			transform: rotate(45deg);
+			box-shadow: #60B1F5 -5px -6px 0 5px;
 			box-shadow: 
 				#FB323C -2px -2px 0 1px,
 				#F99716 -4px -4px 0 3px,
@@ -352,16 +352,38 @@
 				#A3459B -14px -14px 0 13px;
 				animation: rainbow 3s linear infinite alternate;
 		}
+
 		@keyframes rainbow {
 			0% {
 				transform: rotate(30deg);
 			}
 			100% {
-				0% {
 				transform: rotate(60deg);
 			}
 		}
 
+
+		.snowy{
+			background: #333;
+		}
+		.snowy::before {
+				content: '';
+				display: block;
+
+
+				border-left: 0px solid transparent;
+				border-right: 7px solid transparent;
+				border-top: 43px solid yellow; 
+				/*box-shadow: yellow -7px -32px;*/
+				
+				height: 0;
+				width: 0;
+				position: absolute;
+				left: 57px;
+				top: 70px;
+				/*transform: rotate(14deg);*/
+				transform-origin: 50% -60px;
+		}
 		
 	</style>
 </head>
