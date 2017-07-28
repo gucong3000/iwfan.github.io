@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	let success = (function(){
+
+		// 通过API 获取城市信息
+		var url = 'http://chaxun.1616.net/s.php?type=ip&output=json&callback=success&_=' + Math.random();
+		document.write("<script src="+url+">\<\/script>");
+
+		/**
+		* location {
+			"Ip":"1.86.244.152",
+			"Isp":"陕西省西安市 电信",
+			"Browser":"Google Chrome 59.0.3071.115",
+			"OS":"Windows NT",
+			"QueryResult":1
+		  }
+		*/
+		let getLoaction = function getpositionByIp(location) {
+
+			let isp = location.Isp;
+
+			let province = isp.substring(0,isp.indexOf("省")+1);
+
+			let city = isp.substring(isp.indexOf("省")+1,isp.indexOf("市"));
+			
+			fetchWeather(city);
+			setTimeout(function(){
+				document.writeln("所在地区为："+province+city+"<br/>");
+				document.writeln("Ip为："+location.Ip+"<br/>");
+				document.writeln("来自："+location.Browser+"<br/>");
+				let weather = window.SWther.w[city][0];
+				console.log(window.SWther.add);
+				document.writeln("天气："+weather.s1+"<br/>");
+				document.writeln("温度："+weather.t2+" ~ "+weather.t1+"<br/>");
+				document.writeln("风向："+weather.d1+"<br/>");
+				document.writeln("更新时间："+window.SWther.add.update+"<br/>");
+			},1000);
+			
+
+		}
+
+    	function fetchWeather(city){
+    		let url = "http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&charset=utf-8&city="+city;
+    		document.write("<script src="+url+">\<\/script>");
+    	}
+
+		return getLoaction;
+	}());
+</script>
+</body>
+</html>
