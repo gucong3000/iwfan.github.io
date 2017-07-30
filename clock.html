@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		html,body {margin:0;width:100%;height:100%;background:#232425;}
+		.clock {
+			position:fixed;
+			top:0;
+			right:0;
+			bottom:0;
+			left:0;
+			width:350px;
+			height:350px;
+			margin:auto;
+			background:#F2F2F2;
+			border-radius:50%;
+			border:10px solid #D9DFE3;
+			box-shadow:inset 0 0 15px 0 rgba(0,0,0,.5),
+			0 0 20px 0 rgba(0,0,0,.8);
+			z-index: 1;
+			/*animation: circle 10s linear infinite;*/
+		}
+		.centerPoint {
+			width:20px;
+			height:20px;
+			background:red;
+			border-radius:50%;
+			/*margin:165px auto;*/
+			position:absolute;
+			z-index: 5;
+			top:165px;
+			left:165px;
+		}
+		.perMin {
+			width:5px;
+			height:20px;
+			background:#929394;
+			position:absolute;
+			left:170px;
+			z-index: 2;
+			transform-origin: 5px 175px;
+		}
+		.perMin:nth-of-type(1) {
+			transform:rotate(30deg);
+		}
+		.perMin:nth-of-type(2) {
+			transform:rotate(60deg);
+		}
+		.perMin:nth-of-type(3) {
+			transform:rotate(90deg);
+		}
+		.perMin:nth-of-type(4) {
+			transform:rotate(120deg);
+		}
+		.perMin:nth-of-type(5) {
+			transform:rotate(150deg);
+		}
+		.perMin:nth-of-type(6) {
+			transform:rotate(180deg);
+		}
+		.perMin:nth-of-type(7) {
+			transform:rotate(210deg);
+		}
+		.perMin:nth-of-type(8) {
+			transform:rotate(240deg);
+		}
+		.perMin:nth-of-type(9) {
+			transform:rotate(270deg);
+		}
+		.perMin:nth-of-type(10) {
+			transform:rotate(300deg);
+		}
+		.perMin:nth-of-type(11) {
+			transform:rotate(330deg);
+		}
+		.perMin:nth-of-type(12) {
+			transform:rotate(360deg);
+		}
+
+		@keyframes circle {
+			0%{
+				transform: rotate(0deg);
+			}
+			100%{
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+<div class="clock">
+	<section class="centerPoint"></section>
+
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+	<div class="perMin"></div>
+</div>
+</body>
+</html>
