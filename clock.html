@@ -6,108 +6,503 @@
 	<style type="text/css">
 		html,body {margin:0;width:100%;height:100%;background:#232425;}
 		.clock {
-			position:fixed;
+			position:absolute;
 			top:0;
 			right:0;
 			bottom:0;
 			left:0;
-			width:350px;
-			height:350px;
 			margin:auto;
+			width: 350px;
+			height: 350px;
+		}
+
+		.dial {
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
 			background:#F2F2F2;
-			border-radius:50%;
 			border:10px solid #D9DFE3;
 			box-shadow:inset 0 0 15px 0 rgba(0,0,0,.5),
 			0 0 20px 0 rgba(0,0,0,.8);
-			z-index: 1;
-			/*animation: circle 10s linear infinite;*/
-		}
-		.centerPoint {
-			width:20px;
-			height:20px;
-			background:red;
-			border-radius:50%;
-			/*margin:165px auto;*/
-			position:absolute;
-			z-index: 5;
-			top:165px;
-			left:165px;
-		}
-		.perMin {
-			width:5px;
-			height:20px;
-			background:#929394;
-			position:absolute;
-			left:170px;
-			z-index: 2;
-			transform-origin: 5px 175px;
-		}
-		.perMin:nth-of-type(1) {
-			transform:rotate(30deg);
-		}
-		.perMin:nth-of-type(2) {
-			transform:rotate(60deg);
-		}
-		.perMin:nth-of-type(3) {
-			transform:rotate(90deg);
-		}
-		.perMin:nth-of-type(4) {
-			transform:rotate(120deg);
-		}
-		.perMin:nth-of-type(5) {
-			transform:rotate(150deg);
-		}
-		.perMin:nth-of-type(6) {
-			transform:rotate(180deg);
-		}
-		.perMin:nth-of-type(7) {
-			transform:rotate(210deg);
-		}
-		.perMin:nth-of-type(8) {
-			transform:rotate(240deg);
-		}
-		.perMin:nth-of-type(9) {
-			transform:rotate(270deg);
-		}
-		.perMin:nth-of-type(10) {
-			transform:rotate(300deg);
-		}
-		.perMin:nth-of-type(11) {
-			transform:rotate(330deg);
-		}
-		.perMin:nth-of-type(12) {
-			transform:rotate(360deg);
+			position: absolute;
 		}
 
-		@keyframes circle {
-			0%{
-				transform: rotate(0deg);
+		.dial ul {
+			margin:0;
+			padding: 0;
+			list-style-type: none;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+		}
+		.dial .scale .pre-scale{
+			width: 2px;
+			height:5px;
+			background: #929394;
+			position: absolute;
+			left: 50%;
+			margin-left: -1px;
+			top: 10px;
+			transform-origin: 1px 155px;
+		}
+		.dial .scale .pre-scale:nth-of-type(5n+1) {
+			width: 2px;
+			height: 15px;
+		}
+
+		.dial .scale .pre-scale:nth-of-type(1) {
+			transform: rotate(0deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(2) {
+			transform: rotate(6deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(3) {
+			transform: rotate(12deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(4) {
+			transform: rotate(18deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(5) {
+			transform: rotate(24deg);
+		}
+
+
+		.dial .scale .pre-scale:nth-of-type(6) {
+			transform: rotate(30deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(7) {
+			transform: rotate(36deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(8) {
+			transform: rotate(42deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(9) {
+			transform: rotate(48deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(10) {
+			transform: rotate(54deg);
+		}
+
+
+		.dial .scale .pre-scale:nth-of-type(11) {
+			transform: rotate(60deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(12) {
+			transform: rotate(66deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(13) {
+			transform: rotate(72deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(14) {
+			transform: rotate(78deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(15) {
+			transform: rotate(84deg);
+		}
+
+		.dial .scale .pre-scale:nth-of-type(16) {
+			transform: rotate(90deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(17) {
+			transform: rotate(96deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(18) {
+			transform: rotate(102deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(19) {
+			transform: rotate(108deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(20) {
+			transform: rotate(114deg);
+		}
+
+		.dial .scale .pre-scale:nth-of-type(21) {
+			transform: rotate(120deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(22) {
+			transform: rotate(126deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(23) {
+			transform: rotate(132deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(24) {
+			transform: rotate(138deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(25) {
+			transform: rotate(144deg);
+		}
+
+		.dial .scale .pre-scale:nth-of-type(26) {
+			transform: rotate(150deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(27) {
+			transform: rotate(156deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(28) {
+			transform: rotate(162deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(29) {
+			transform: rotate(168deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(30) {
+			transform: rotate(174deg);
+		}
+
+		.dial .scale .pre-scale:nth-of-type(31) {
+			transform: rotate(180deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(32) {
+			transform: rotate(186deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(33) {
+			transform: rotate(192deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(34) {
+			transform: rotate(198deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(35) {
+			transform: rotate(204deg);
+		}
+
+
+		.dial .scale .pre-scale:nth-of-type(36) {
+			transform: rotate(210deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(37) {
+			transform: rotate(216deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(38) {
+			transform: rotate(222deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(39) {
+			transform: rotate(228deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(40) {
+			transform: rotate(234deg);
+		}
+
+
+		.dial .scale .pre-scale:nth-of-type(41) {
+			transform: rotate(240deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(42) {
+			transform: rotate(246deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(43) {
+			transform: rotate(252deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(44) {
+			transform: rotate(258deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(45) {
+			transform: rotate(264deg);
+		}
+
+
+		.dial .scale .pre-scale:nth-of-type(46) {
+			transform: rotate(270deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(47) {
+			transform: rotate(276deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(48) {
+			transform: rotate(282deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(49) {
+			transform: rotate(288deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(50) {
+			transform: rotate(294deg);
+		}
+
+
+		.dial .scale .pre-scale:nth-of-type(51) {
+			transform: rotate(300deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(52) {
+			transform: rotate(306deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(53) {
+			transform: rotate(312deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(54) {
+			transform: rotate(318deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(55) {
+			transform: rotate(324deg);
+		}
+
+		.dial .scale .pre-scale:nth-of-type(56) {
+			transform: rotate(330deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(57) {
+			transform: rotate(336deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(58) {
+			transform: rotate(342deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(59) {
+			transform: rotate(348deg);
+		}
+		.dial .scale .pre-scale:nth-of-type(60) {
+			transform: rotate(354deg);
+		}
+
+		.dial .timeblock {
+			width: 124px;
+			height: 40px;
+			background: #232425;
+			margin-bottom: 65px;
+		}
+		.dial .timeblock li {
+			width: 40px;
+			height: 40px;
+			float: left;
+		}
+		.dial .timeblock li h2 {
+			margin: 4px 0;
+			padding: 0;
+			color: #ccc;
+			text-align: center;
+		}
+		.dial .timeblock li + li {
+			border-left: 2px solid #F2F2F2;
+		}
+
+		.dial .center {
+			width:16px;
+			height:16px;
+			background:#C90000;
+			border-radius:50%;
+			position:absolute;
+			top:50%;
+			left:50%;
+			margin-top: -8px;
+			margin-left: -8px;
+			box-shadow: 0 0 10px 0 #C90000;
+		}
+
+		.dial .hands {
+			width: 50px;
+			height: 50px;
+			background: #CFCFCF;
+			border-radius: 50%;
+			box-shadow: inset 0 0 10px 0 rgba(0,0,0,.2); 
+		}
+		.dial .hands .hour {
+			width: 10px;
+			height: 120px;
+			background: #232425;
+			border-radius: 10px;
+			position: absolute;
+			left: 20px;
+			transform-origin: 5px 95px;
+			transform:translateY(-70px) rotate(0deg);
+			box-shadow: 0 0 2px 0 #232425;
+			/*animation: circle_hour 43200s linear infinite; */
+		}
+
+
+		.dial .hands .minute {
+			width: 10px;
+			height: 135px;
+			background: #343536;
+			border-radius: 10px;
+			position: absolute;
+			left: 20px;
+			transform-origin: 5px 110px;
+			transform: translateY(-85px) rotate(0deg);
+			box-shadow: 0 0 2px 0 #343536;
+			/*animation: circle_minute 3600s linear infinite;*/
+		}
+
+		.dial .hands .second {
+			width: 2px;
+			height: 150px;
+			background: #CC0000;
+			position: absolute;
+			left: 24px;
+			transform-origin: 1px 125px;
+			transform: translateY(-100px) rotate(0deg);
+			border-radius: 0px 0px 2px 2px;
+			box-shadow: 0 0 2px 0 #CC0000;
+			/*animation: circle_sec 60s linear infinite;*/
+		}
+		.dial .hands .second::after {
+			content: "";
+			display: block;
+			width: 10px;
+			height: 40px;
+			background: #CC0000;
+			position: absolute;
+			bottom: -40px;
+			left: -4px;
+			border-radius: 15px 15px 10px 10px;
+			box-shadow: 0 0 2px 0 #CC0000;
+		}
+
+
+		@keyframes circle_hour {		
+			100% {
+				transform:translateY(-70px) rotate(360deg);
 			}
-			100%{
-				transform: rotate(360deg);
+		}
+		@keyframes circle_minute {		
+			100% {
+				transform:translateY(-85px) rotate(360deg);
+			}
+		}
+		@keyframes circle_sec{		
+			100% {
+				transform:translateY(-100px) rotate(360deg);
 			}
 		}
 	</style>
 </head>
 <body>
 <div class="clock">
-	<section class="centerPoint"></section>
+	<!-- 表盘 -->
+	<div class="dial">
+		<!-- 刻度 -->
+		<ul class="scale">
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
 
-	<div class="perMin"></div>
-	<div class="perMin"></div>
-	<div class="perMin"></div>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
 
-	<div class="perMin"></div>
-	<div class="perMin"></div>
-	<div class="perMin"></div>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
 
-	<div class="perMin"></div>
-	<div class="perMin"></div>
-	<div class="perMin"></div>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
 
-	<div class="perMin"></div>
-	<div class="perMin"></div>
-	<div class="perMin"></div>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+			<li class="pre-scale"></li>
+		</ul>
+		<ul class="timeblock">
+			<li class="hour-block"><h2>13</h2></li>
+			<li class="minute-block"><h2>45</h2></li>
+			<li class="second-block"><h2>23</h2></li>
+		</ul>
+		<!-- 指针 -->
+		<ul class="hands">
+			<li class="hour"></li>
+			<li class="minute"></li>
+			<li class="second"></li>
+		</ul>
+		<!-- 中心点 -->
+		<div class="center"></div>
+	</div>
 </div>
+<div class="output">
+	
+</div>
+	<script type="text/javascript">
+		(function(){
+			window.onload = doClock;
+
+			setInterval(doClock,1000);
+			function doClock(){
+				var now = new Date();
+
+				document.querySelector(".hour-block h2").innerHTML = now.getHours()>10?now.getHours():"0"+now.getHours();
+				document.querySelector(".minute-block h2").innerHTML = now.getMinutes()>10?now.getMinutes():"0"+now.getMinutes();
+				document.querySelector(".second-block h2").innerHTML = now.getSeconds()>10?now.getSeconds():"0"+now.getSeconds();
+
+				var hour = now.getHours();
+
+				hour = hour > 12? hour - 12 : hour;
+
+				var minutes = now.getMinutes();
+
+				var seconds = now.getSeconds();
+
+				// console.log(hour,minutes,seconds);
+
+				var secondDegree = seconds * 6;
+
+				var minuteDegree = (minutes + (seconds / 60)) * 6;
+
+				var hourdegree = (hour + (minutes + (seconds / 60)) / 60) * 30;
+
+				// console.log(hourdegree,minuteDegree,secondDegree);
+
+				var hourHand = document.querySelector(".dial .hands .hour");
+				hourHand.style.transform = "translateY(-70px) rotate("+hourdegree+"deg)";
+				// hourHand.style.animation = "circle_hour 43200s linear infinite";
+
+				var minuteHand = document.querySelector(".dial .hands .minute");
+				minuteHand.style.transform = "translateY(-85px) rotate("+minuteDegree+"deg)";
+				// minuteHand.style.animation = "circle_minute 3600s linear infinite";
+
+				var secondHand = document.querySelector(".dial .hands .second");
+				secondHand.style.transform = "translateY(-100px) rotate("+secondDegree+"deg)";
+				// secondHand.style.animation = "circle_sec 60s linear infinite";
+			}
+
+		}());
+	</script>
 </body>
 </html>
