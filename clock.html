@@ -16,8 +16,8 @@
 			bottom:0;
 			left:0;
 			margin:50px auto;
-			width: 350px;
-			height: 350px;
+			width: 300px;
+			height: 300px;
 		}
 
 		.dial {
@@ -51,13 +51,12 @@
 			left: 50%;
 			margin-left: -1px;
 			top: 10px;
-			transform-origin: 1px 155px;
+			transform-origin: 1px 130px;
 		}
 		.dial .scale .pre-scale:nth-of-type(5n+1) {
 			width: 2px;
-			height: 15px;
+			height: 12px;
 		}
-
 		.dial .scale .pre-scale:nth-of-type(1) {
 			transform: rotate(0deg);
 		}
@@ -257,24 +256,34 @@
 		}
 
 		.dial .timeblock {
-			width: 124px;
-			height: 40px;
-			background: #232425;
-			margin-bottom: 80px;
+			width: 109px;
+			height: 30px;
+			margin-bottom: 65px;
+		}
+		.dial .timeblock li.disapear{
+			transform: scaleY(.0) scaleX(7) rotate(0deg);
+			opacity: .6;
+			background:#232425;
+			color: #232425; 
+			transition: all 1s;
+			box-shadow: 0 0 20px 0 #232425;
 		}
 		.dial .timeblock li {
-			width: 40px;
-			height: 40px;
+			width: 35px;
+			height: 30px;
+			background: #232425;
+			transition: background 5s;
 			float: left;
+			transition: all .8s;
 		}
-		.dial .timeblock li h2 {
-			margin: 4px 0;
+		.dial .timeblock h2 {
+			margin:0;
 			padding: 0;
 			color: #ccc;
 			text-align: center;
 		}
 		.dial .timeblock li + li {
-			border-left: 2px solid #F2F2F2;
+			margin-left:2px;
 		}
 
 		.dial .center {
@@ -299,13 +308,13 @@
 		}
 		.dial .hands .hour {
 			width: 10px;
-			height: 120px;
+			height: 105px;
 			background: #232425;
 			border-radius: 10px;
 			position: absolute;
 			left: 20px;
-			transform-origin: 5px 95px;
-			transform:translateY(-70px) rotate(0deg);
+			transform-origin: 5px 80px;
+			transform:translateY(-55px) rotate(40deg);
 			box-shadow: 0 0 2px 0 #232425;
 			/*animation: circle_hour 43200s linear infinite; */
 		}
@@ -313,25 +322,25 @@
 
 		.dial .hands .minute {
 			width: 10px;
-			height: 135px;
+			height: 120px;
 			background: #343536;
 			border-radius: 10px;
 			position: absolute;
 			left: 20px;
-			transform-origin: 5px 110px;
-			transform: translateY(-85px) rotate(0deg);
+			transform-origin: 5px 95px;
+			transform: translateY(-70px) rotate(30deg);
 			box-shadow: 0 0 2px 0 #343536;
 			/*animation: circle_minute 3600s linear infinite;*/
 		}
 
 		.dial .hands .second {
 			width: 2px;
-			height: 150px;
+			height: 135px;
 			background: #CC0000;
 			position: absolute;
 			left: 24px;
-			transform-origin: 1px 125px;
-			transform: translateY(-100px) rotate(0deg);
+			transform-origin: 1px 110px;
+			transform: translateY(-85px) rotate(20deg);
 			border-radius: 0px 0px 2px 2px;
 			box-shadow: 0 0 2px 0 #CC0000;
 			/*animation: circle_sec 60s linear infinite;*/
@@ -348,12 +357,13 @@
 			border-radius: 15px 15px 10px 10px;
 			box-shadow: 0 0 2px 0 #CC0000;
 		}
+
 		.dial .toggle-btn {
 			position: absolute;
-			width: 100px;
-			height: 30px;
+			width: 80px;
+			height: 20px;
 			bottom: -60px;
-			left: 115px;
+			left: 90px;
 		}
 		.dial .toggle-btn input[type='checkbox'][name="toggle"] {
 			margin: 0;
@@ -367,11 +377,11 @@
 			/*cursor: pointer;*/
 		}
 		.dial .toggle-btn input[type='checkbox'][name="toggle"]:checked +.btn-group .btn{
-			left: 71px;
+			left: 61px;
 			transition: all 0.5s;
 		}
 		.dial .toggle-btn input[type='checkbox'][name="toggle"]:checked +.btn-group::before {
-			width: 98px;
+			width: 78px;
 			transition: all 0.5s;
 		}
 		.dial .toggle-btn input[type='checkbox'][name="toggle"]:checked +.btn-group::after {
@@ -396,8 +406,8 @@
 			position: absolute;
 			left: 1px;
 			top: 1px;
-			width: 28px;
-			height: 28px;
+			width: 18px;
+			height: 18px;
 			border-radius: 50%;
 			background: linear-gradient(#444, #222);
 			box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 8px rgba(0,0,0,0.3), 0 12px 12px rgba(0,0,0,0.4);
@@ -406,8 +416,8 @@
 		.dial .toggle-btn .btn-group::before {
 			content: "";
 			display: block;
-			width: 28px;
-			height: 28px;
+			width: 18px;
+			height: 18px;
 			background: linear-gradient(#444, #222);
 			transition: all 0.5s;
 			border-radius: 28px;
@@ -420,7 +430,7 @@
 			content: "";
 			display: block;
 			position: absolute;
-			top: 10px;
+			top: 5px;
 			right: -20px;
 			width: 10px;
 			height: 10px;
@@ -526,7 +536,7 @@
 			<li class="pre-scale"></li>
 		</ul>
 		<ul class="timeblock">
-			<li class="hour-block"><h2>13</h2></li>
+			<li class="hour-block" ><h2>13</h2></li>
 			<li class="minute-block"><h2>45</h2></li>
 			<li class="second-block"><h2>23</h2></li>
 		</ul>
@@ -556,8 +566,22 @@
 			var toggle = document.querySelector('.dial .toggle-btn input[type="checkbox"][name="toggle"]');
 			var timeblock = document.querySelector('.dial .timeblock');
 			toggle.onclick = function() {
-				timeblock.style.display = toggle.checked ? "block" : "none";
+				// timeblock.style.display = toggle.checked ? "block" : "none";
+				// console.log(timeblock.childNodes);
+				// .dial .timeblock li.disapear
+				var timeblock = document.querySelectorAll('.dial .timeblock li');
+				for (var i=0;i<timeblock.length;i++) {
+					if (toggle.checked) {
+						var oldClass = timeblock[i].getAttribute('class');
+						console.log(oldClass.substring(0,oldClass.lastIndexOf('disapear')));
+						timeblock[i].setAttribute("class",oldClass.substring(0,oldClass.lastIndexOf('disapear')));
+					} else {
+						console.log(timeblock[i].getAttribute('class')+" disapear");
+						timeblock[i].setAttribute("class",timeblock[i].getAttribute('class')+" disapear");
+					}
+				}
 			}
+
 			setInterval(doClock,1000);
 			function doClock(){
 				var now = new Date();
@@ -585,15 +609,15 @@
 				// console.log(hourdegree,minuteDegree,secondDegree);
 
 				var hourHand = document.querySelector(".dial .hands .hour");
-				hourHand.style.transform = "translateY(-70px) rotate("+hourdegree+"deg)";
+				hourHand.style.transform = "translateY(-55px) rotate("+hourdegree+"deg)";
 				// hourHand.style.animation = "circle_hour 43200s linear infinite";
 
 				var minuteHand = document.querySelector(".dial .hands .minute");
-				minuteHand.style.transform = "translateY(-85px) rotate("+minuteDegree+"deg)";
+				minuteHand.style.transform = "translateY(-70px) rotate("+minuteDegree+"deg)";
 				// minuteHand.style.animation = "circle_minute 3600s linear infinite";
 
 				var secondHand = document.querySelector(".dial .hands .second");
-				secondHand.style.transform = "translateY(-100px) rotate("+secondDegree+"deg)";
+				secondHand.style.transform = "translateY(-85px) rotate("+secondDegree+"deg)";
 				// secondHand.style.animation = "circle_sec 60s linear infinite";
 			}
 
