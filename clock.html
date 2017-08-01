@@ -316,9 +316,7 @@
 			transform-origin: 5px 80px;
 			transform:translateY(-55px) rotate(40deg);
 			box-shadow: 0 0 2px 0 #232425;
-			/*animation: circle_hour 43200s linear infinite; */
 		}
-
 
 		.dial .hands .minute {
 			width: 10px;
@@ -330,7 +328,6 @@
 			transform-origin: 5px 95px;
 			transform: translateY(-70px) rotate(30deg);
 			box-shadow: 0 0 2px 0 #343536;
-			/*animation: circle_minute 3600s linear infinite;*/
 		}
 
 		.dial .hands .second {
@@ -343,7 +340,6 @@
 			transform: translateY(-85px) rotate(20deg);
 			border-radius: 0px 0px 2px 2px;
 			box-shadow: 0 0 2px 0 #CC0000;
-			/*animation: circle_sec 60s linear infinite;*/
 		}
 		.dial .hands .second::after {
 			content: "";
@@ -374,7 +370,6 @@
 			left: 0;
 			z-index: 9;
 			opacity: 0;
-			/*cursor: pointer;*/
 		}
 		.dial .toggle-btn input[type='checkbox'][name="toggle"]:checked +.btn-group .btn{
 			left: 61px;
@@ -438,22 +433,6 @@
 			box-shadow: inset 0px 1px 0px 0px #000,inset 0px -1px 0px 0px #555;
 			background: #555;
 			transition: all .2s;
-		}
-
-		@keyframes circle_hour {		
-			100% {
-				transform:translateY(-70px) rotate(360deg);
-			}
-		}
-		@keyframes circle_minute {		
-			100% {
-				transform:translateY(-85px) rotate(360deg);
-			}
-		}
-		@keyframes circle_sec{		
-			100% {
-				transform:translateY(-100px) rotate(360deg);
-			}
 		}
 	</style>
 </head>
@@ -562,13 +541,9 @@
 	<script type="text/javascript">
 		(function(){
 			window.onload = doClock;
-
 			var toggle = document.querySelector('.dial .toggle-btn input[type="checkbox"][name="toggle"]');
 			var timeblock = document.querySelector('.dial .timeblock');
 			toggle.onclick = function() {
-				// timeblock.style.display = toggle.checked ? "block" : "none";
-				// console.log(timeblock.childNodes);
-				// .dial .timeblock li.disapear
 				var timeblock = document.querySelectorAll('.dial .timeblock li');
 				for (var i=0;i<timeblock.length;i++) {
 					if (toggle.checked) {
@@ -583,6 +558,7 @@
 			}
 
 			setInterval(doClock,1000);
+
 			function doClock(){
 				var now = new Date();
 
@@ -598,27 +574,20 @@
 
 				var seconds = now.getSeconds();
 
-				// console.log(hour,minutes,seconds);
-
 				var secondDegree = seconds * 6;
 
 				var minuteDegree = (minutes + (seconds / 60)) * 6;
 
 				var hourdegree = (hour + (minutes + (seconds / 60)) / 60) * 30;
 
-				// console.log(hourdegree,minuteDegree,secondDegree);
-
 				var hourHand = document.querySelector(".dial .hands .hour");
 				hourHand.style.transform = "translateY(-55px) rotate("+hourdegree+"deg)";
-				// hourHand.style.animation = "circle_hour 43200s linear infinite";
 
 				var minuteHand = document.querySelector(".dial .hands .minute");
 				minuteHand.style.transform = "translateY(-70px) rotate("+minuteDegree+"deg)";
-				// minuteHand.style.animation = "circle_minute 3600s linear infinite";
 
 				var secondHand = document.querySelector(".dial .hands .second");
 				secondHand.style.transform = "translateY(-85px) rotate("+secondDegree+"deg)";
-				// secondHand.style.animation = "circle_sec 60s linear infinite";
 			}
 
 		}());
