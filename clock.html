@@ -15,7 +15,7 @@
 			right:0;
 			bottom:0;
 			left:0;
-			margin:auto;
+			margin:50px auto;
 			width: 350px;
 			height: 350px;
 		}
@@ -260,7 +260,7 @@
 			width: 124px;
 			height: 40px;
 			background: #232425;
-			margin-bottom: 65px;
+			margin-bottom: 80px;
 		}
 		.dial .timeblock li {
 			width: 40px;
@@ -364,10 +364,15 @@
 			left: 0;
 			z-index: 9;
 			opacity: 0;
+			/*cursor: pointer;*/
 		}
 		.dial .toggle-btn input[type='checkbox'][name="toggle"]:checked +.btn-group .btn{
 			left: 71px;
-			transition: all 0.4s;
+			transition: all 0.5s;
+		}
+		.dial .toggle-btn input[type='checkbox'][name="toggle"]:checked +.btn-group::before {
+			width: 98px;
+			transition: all 0.5s;
 		}
 		.dial .toggle-btn input[type='checkbox'][name="toggle"]:checked +.btn-group::after {
 			background: #CC0000;
@@ -378,7 +383,7 @@
 		.dial .toggle-btn .btn-group {
 			width: 100%;
 			height: 100%;
-			position: absolute;
+			position: relative;
 			top:0;
 			right: 0;
 			bottom: 0;
@@ -396,7 +401,20 @@
 			border-radius: 50%;
 			background: linear-gradient(#444, #222);
 			box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 8px rgba(0,0,0,0.3), 0 12px 12px rgba(0,0,0,0.4);
-			transition: left 0.4s;
+			transition: left 0.5s;
+		}
+		.dial .toggle-btn .btn-group::before {
+			content: "";
+			display: block;
+			width: 28px;
+			height: 28px;
+			background: linear-gradient(#444, #222);
+			transition: all 0.5s;
+			border-radius: 28px;
+			position: absolute;
+			left: 1px;
+			top: 1px;
+			
 		}
 		.dial .toggle-btn .btn-group::after {
 			content: "";
