@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<style type="text/css">
 		body{
 			margin:0;
@@ -24,7 +25,7 @@
 			/* solve margin collapse */
 			overflow: inherit;
 			width: 960px;
-			height: 1200px;
+			height: 800px;
 			margin: 100px auto;
 			padding: 0 20px;
 			background: -webkit-linear-gradient(-200deg,#FFF9DA 0%,#FFF8E5 40%,#FFF2F1 100%);
@@ -33,52 +34,16 @@
 			box-shadow: 0 0 10px 0 rgba(255,255,255,0.3);
 		}
 
-		.sun {
-			width:160px;
-			height:20px;
-			background:-webkit-linear-gradient(left,transparent,rgba(255,255,255,0.2) 20%,rgba(255,255,255,0.2) 80%, transparent);
-			position:absolute;
-			top:75px;
-			animation:sun 10s linear infinite;
-		}
-		.sun::before {
-			content:"";
-			display:block;
-			width:160px;
-			height:20px;
-			background:-webkit-linear-gradient(left,transparent,rgba(255,255,255,0.2) 20%,rgba(255,255,255,0.2) 80%, transparent);
-			transform:rotate(90deg);
-		}
-		.sun::after {
-			content:"";
-			display:block;
-			width:60px;
-			height:60px;
-			background:#FFEE44;
-			border-radius:50%;
-			box-shadow:0 0 0 15px rgba(255,255,0,0.2);
-			position:absolute;
-			left:50px;
-			top:-20px;
-		}
-		@keyframes sun {
-			0% {
-				transform:rotate(0deg);
-			}
-			100% {
-				transform:rotate(360deg);
-			}
-		}
 
 	</style>
 </head>
 <body>
 <div class="wrapper">
 	<div class="decorate-box">
-		<div class="sun"></div>
+		
 	</div>
 	<div class="container">
-
+		<img src="superman.png" alt="superman">
 	</div>
 </div>
 </body>
