@@ -18,31 +18,50 @@
             display: table;
         }
         .wrapper #canvas {
-            height: 500px;
+            height: 700px;
             border-radius: 5px;
         }
         .wrapper .control {
             text-align: center;
-            line-height: 50px;
-            height: 40px;
+            line-height: 43px;
+            padding: 5px 0;
             border-top: 1px solid #ededed;
         }
         .wrapper .control button {
+            font-size: 14px;
             background: #fff;
-            border: 1px solid #ccc;
+            border: none;
+            border-right: 1px solid #ccc;
             color: #333;
             outline: none;
-            padding: 0 10px;
+            padding: 0 5px;
             height: 30px;
             line-height: 30px;
             vertical-align: top;
-            margin: 5px;
-            border-radius: 5px;
             cursor: pointer;
         }
         .wrapper .control button:hover {
             background: #ebebeb;
             border-color: #adadad;
+        }
+        .wrapper .control .btnGroup {
+            height: 30px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            margin: 0px 20px;
+            border-radius: 5px;
+            font-size: 0;
+        }
+        .wrapper .control .btnGroup button:nth-of-type(1) {
+            border-radius: 5px 0 0 5px;
+        }
+        .wrapper .control .btnGroup button:nth-last-of-type(1) {
+            border-radius: 0 5px 5px 0;
+            border-right: none;
+        }
+        .wrapper .control .btnGroup button:disabled {
+            background:#bbb;
+            cursor: default;
         }
     </style>
 </head>
@@ -51,9 +70,13 @@
         <div class="banner"/> 
             <div id="canvas"></div>
             <div class="control">
-                <button id="treeLayout">树布局</button>
-                <button id="follow">设置上下级联动</button>
-                <button id="refresh">刷新</button>
+                <span class="btnGroup">
+                    <button disabled> 请顺序点击按钮  </button>
+                    <button id="init">1. 初始化环路</button>
+                    <button id="treeLayout">2. 进行树布局 (环路被遮挡)</button>
+                    <!-- <button id="follow">设置上下级联动</button> -->
+                    <!-- <button id="refresh">刷新</button> -->
+                </span>
             </div>
         </div>
     </div>
@@ -61,7 +84,7 @@
     <script src="http://demo.qunee.com/lib/qunee-min.js"></script>
     <script>
         var graph = new Q.Graph('canvas')
-        init()
+
         function init(follow) {
             var A1 = graph.createNode("A", 0, -200)
             var A2 = graph.createNode("B", 0, -100)
@@ -77,9 +100,15 @@
             graph.createEdge(A3, A5)
             graph.createEdge(A4, A5)
            
-            var B1 = graph.createNode("F", -500, 0)
-            var B2 = graph.createNode("G",-550,50)
-            var B3 = graph.createNode("H",-450,-50)
+            var B1 = graph.createNode("F", -500, -100)
+            var B2 = graph.createNode("G",-550, 100)
+            var B3 = graph.createNode("H",-450, 100)
+            graph.createEdge(B1, B2)
+            graph.createEdge(B1, B3)
+            graph.createEdge(B2, B3)
+
+            graph.createEdge(A3, B1)
+
             if (follow) {
                  A1.addHost(A2)
                  A2.addHost(A3)
@@ -88,10 +117,13 @@
                  A3.addHost(A4)
                  A3.addHost(A5)
                  A4.addHost(A5)
+                 B1.addHost(B2)
+                 B1.addHost(B3)
+                 B2.addHost(B3)
+                 A3.addHost(B1)
             }
 
-            graph.createEdge(B1, B2)
-            graph.createEdge(B1, B3)
+       
         }
         
         var treeLayout = document.getElementById('treeLayout')
@@ -99,7 +131,8 @@
             var layouter = new Q.TreeLayouter(graph)
             layouter.layoutType = Q.Consts.LAYOUT_TYPE_EVEN_HORIZONTAL
             layouter.doLayout({callback: function(){
-                graph.zoomToOverview()
+                // graph.zoomToOverview()
+                graph.moveToCenter()
             }});
         }
 
@@ -121,21 +154,27 @@
             })
             return map;
 		}
-            
-        var follow = document.getElementById('follow')
-        follow.onclick = function(e) {
+        var initBtn = document.getElementById('init')
+        initBtn.onclick = function(e) {
             graph.clear()
             init(true)
             graph.moveToCenter()
         }
 
-        var refresh = document.getElementById('refresh')
-        refresh.onclick = function(e) {
-            graph.clear()
-            init()
-            // graph.zoomToOverview()
-            graph.moveToCenter()
-        }
+        // var follow = document.getElementById('follow')
+        // follow.onclick = function(e) {
+        //     graph.clear()
+        //     init(true)
+        //     graph.moveToCenter()
+        // }
+
+        // var refresh = document.getElementById('refresh')
+        // refresh.onclick = function(e) {
+        //     graph.clear()
+        //     init()
+        //     // graph.zoomToOverview()
+        //     graph.moveToCenter()
+        // }
 
         //添加追随节点
 	Q.Node.prototype.addHost = function (host) {
