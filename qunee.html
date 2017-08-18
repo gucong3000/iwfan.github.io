@@ -74,8 +74,11 @@
                     <button disabled> 请顺序点击按钮  </button>
                     <button id="init">1. 初始化环路</button>
                     <button id="treeLayout">2. 进行树布局 (环路被遮挡)</button>
-                    <!-- <button id="follow">设置上下级联动</button> -->
-                    <!-- <button id="refresh">刷新</button> -->
+                </span><br>
+                <span class="btnGroup">
+                        <button disabled> 请顺序点击按钮  </button>
+                        <button id="init1">1. 初始化环路，并设置上下级联动</button>
+                        <button id="treeLayout1">2. 进行树布局 (环路被遮挡,且由于上下级联动，极难手动展开)</button>             
                 </span>
             </div>
         </div>
@@ -136,6 +139,16 @@
             }});
         }
 
+        var treeLayout1 = document.getElementById('treeLayout1')
+        treeLayout1.onclick = function(e) {
+            var layouter = new Q.TreeLayouter(graph)
+            layouter.layoutType = Q.Consts.LAYOUT_TYPE_EVEN_HORIZONTAL
+            layouter.doLayout({callback: function(){
+                // graph.zoomToOverview()
+                graph.moveToCenter()
+            }});
+        }
+
         graph.moveElements = function(elements, dx, dy){ //移动节点
             elements = findAllFollowers(elements);
             return Q.Graph.prototype.moveElements.call(this, elements, dx, dy);
@@ -157,16 +170,16 @@
         var initBtn = document.getElementById('init')
         initBtn.onclick = function(e) {
             graph.clear()
-            init(true)
+            init()
             graph.moveToCenter()
         }
 
-        // var follow = document.getElementById('follow')
-        // follow.onclick = function(e) {
-        //     graph.clear()
-        //     init(true)
-        //     graph.moveToCenter()
-        // }
+        var initBtn1 = document.getElementById('init1')
+        initBtn1.onclick = function(e) {
+            graph.clear()
+            init(true)
+            graph.moveToCenter()
+        }
 
         // var refresh = document.getElementById('refresh')
         // refresh.onclick = function(e) {
