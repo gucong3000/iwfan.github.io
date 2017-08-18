@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>环路演示</title>
+    <style>
+        * {margin: 0;padding: 0}
+        .wrapper {
+            margin: 10px;
+            border: 1px solid #DEDEDE;
+            border-radius: 5px;
+        }
+        .wrapper::before,
+        .wrapper::after {
+            content: "";
+            display: table;
+        }
+        .wrapper #canvas {
+            height: 500px;
+            border-radius: 5px;
+        }
+        .wrapper .control {
+            text-align: center;
+            line-height: 50px;
+            height: 40px;
+            border-top: 1px solid #ededed;
+        }
+        .wrapper .control button {
+            background: #fff;
+            border: 1px solid #ccc;
+            color: #333;
+            outline: none;
+            padding: 0 10px;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: top;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .wrapper .control button:hover {
+            background: #ebebeb;
+            border-color: #adadad;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="banner"/> 
+            <div id="canvas"></div>
+            <div class="control">
+                <button id="treeLayout">树布局</button>
+                <button id="follow">设置上下级联动</button>
+                <button id="refresh">刷新</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="http://demo.qunee.com/lib/qunee-min.js"></script>
+    <script>
+        var graph = new Q.Graph('canvas')
+        init()
+        function init(follow) {
+            var A1 = graph.createNode("A", 0, -200)
+            var A2 = graph.createNode("B", 0, -100)
+            var A3 = graph.createNode("C", -100, 0)
+            var A4 = graph.createNode("D", 100, 0)
+            var A5 = graph.createNode("E",0, 100)
+
+            graph.createEdge(A1, A2)
+            graph.createEdge(A2, A3)
+            graph.createEdge(A2, A5)
+            graph.createEdge(A4, A2)
+            graph.createEdge(A3, A4)
+            graph.createEdge(A3, A5)
+            graph.createEdge(A4, A5)
+           
+            var B1 = graph.createNode("F", -500, 0)
+            var B2 = graph.createNode("G",-550,50)
+            var B3 = graph.createNode("H",-450,-50)
+            if (follow) {
+                 A1.addHost(A2)
+                 A2.addHost(A3)
+                 A2.addHost(A5)
+                 A4.addHost(A2)
+                 A3.addHost(A4)
+                 A3.addHost(A5)
+                 A4.addHost(A5)
+            }
+
+            graph.createEdge(B1, B2)
+            graph.createEdge(B1, B3)
+        }
+        
+        var treeLayout = document.getElementById('treeLayout')
+        treeLayout.onclick = function(e) {
+            var layouter = new Q.TreeLayouter(graph)
+            layouter.layoutType = Q.Consts.LAYOUT_TYPE_EVEN_HORIZONTAL
+            layouter.doLayout({callback: function(){
+                graph.zoomToOverview()
+            }});
+        }
+
+        graph.moveElements = function(elements, dx, dy){ //移动节点
+            elements = findAllFollowers(elements);
+            return Q.Graph.prototype.moveElements.call(this, elements, dx, dy);
+        }
+
+        function findAllFollowers(elements, map){				//获取所有的跟随节点
+            var map = map || new Q.HashList();
+            elements.forEach(function(element){
+                if(map.contains(element)){
+                    return;
+                }
+                map.add(element);
+                if(element.followerList){
+                    findAllFollowers(element.followerList, map);
+                }
+            })
+            return map;
+		}
+            
+        var follow = document.getElementById('follow')
+        follow.onclick = function(e) {
+            graph.clear()
+            init(true)
+            graph.moveToCenter()
+        }
+
+        var refresh = document.getElementById('refresh')
+        refresh.onclick = function(e) {
+            graph.clear()
+            init()
+            // graph.zoomToOverview()
+            graph.moveToCenter()
+        }
+
+        //添加追随节点
+	Q.Node.prototype.addHost = function (host) {
+        var followers = this.followerList;
+        if (!followers) {
+            followers = this.followerList = new Q.HashList();
+        }
+        followers.add(host);
+    };
+	
+	//移除跟随节点
+	Q.Node.prototype.removeHost = function (host) {
+        var followers = this.followerList;
+        if(followers){
+        	followers.remove(host);
+        }
+    };
+	
+	//清空追随节点
+    Q.Node.prototype.clearHost = function(){
+    	var node = this;
+    	var followers = node.followerList;
+    	if(followers){
+	        followers.clear();
+	    }
+    	node.forEachInEdge(function(e){
+    		e.from.removeHost(node);
+    	});
+    };
+    </script>
+</body>
+</html>
