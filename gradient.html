@@ -1,0 +1,47 @@
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<style type="text/css">
+		html{height: 100%}
+		body{margin:0;height: 100%;
+			/* background:-webkit-linear-gradient(-200deg, #F0D6A3 0%,#F6A092 35%, #A1A7BD 65%, #A7ADD1 100%); */	
+			background:-webkit-linear-gradient(to right, #F0D6A3 0%,#F6A092 35%, #A1A7BD 60%, #5fc3e4 100%);
+			background:-moz-linear-gradient(to right, #F0D6A3 0%,#F6A092 35%, #A1A7BD 60%, #5fc3e4 100%);
+			background:-o-linear-gradient(to right, #F0D6A3 0%,#F6A092 35%, #A1A7BD 60%, #5fc3e4 100%);
+			background:linear-gradient(to right, #F0D6A3 0%,#F6A092 35%, #A1A7BD 60%, #5fc3e4 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#F0D6A3,endcolorstr=#5fc3e4,gradientType=1);
+		}
+		.container {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 260px;
+			height: 350px;
+			margin: auto;
+			/* padding: 0 20px; */
+			/* background: -webkit-linear-gradient(-200deg,#FFF9DA 0%,#FFF8E5 40%,#FFF2F1 100%); */
+			/* background: linear-gradient(-200deg,#FFF9DA 0%,#FFF8E5 40%,#FFF2F1 100%); */
+			/* border-radius:10px; */
+			/* box-shadow: 0 0 10px 0 rgba(255,255,255,0.3); */
+			background: url(image/superman.png) left top no-repeat;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<div class="container" id="superman">
+</div>
+<script>
+	window.onload = function() {
+		var superMan = document.getElementById('superman')
+		superMan.onclick = function(e) {
+			location.href = "./blog/";
+		}
+	}
+</script>
+</body>
+</html>
