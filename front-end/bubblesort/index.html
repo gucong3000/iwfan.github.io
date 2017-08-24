@@ -85,7 +85,6 @@
 
                 for (var i = 0, len = arr.length - 1; i < len; i++) {
                     (function(x){
-                        // 去掉外层循环的样式
                         setTimeout(function(){
                             for (var j = 0; j < len - x; j++) {
                                 (function(y){
@@ -105,11 +104,14 @@
                                             next.id = 'item' + y
                                             current.id = 'item' + (y+1)
                                         }
-                                    },1e3 * y)
+                                    },1e3 * y)                                
                                 })(j)
                             }
-                        },((len + 1) * 1e3 * x) - (x * 1e3))
+                        },((len * x) - (x-1)) * 1e3)
                     })(i)
+                }
+                for (var w = 0; w < items.length; w++) {
+                    items[w].style.background = '#ACD6E5'
                 }
             }
 
