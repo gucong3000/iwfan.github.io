@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {margin: 0;padding: 0;}
+        .container {
+            list-style-type: none;
+            width: 585px;
+            height: 250px;
+            margin: 100px auto;
+            border-bottom: 2px dashed #999;
+            font-size: 25.3px;
+        }
+        .item {
+            width: 33px;
+            margin: 0px 3px;
+            background: #ACD6E5;
+            text-align: center;
+            font-size: 16px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul class="container" id="container">
+        </ul>
+    </div>
+
+    <script>
+        (function() {
+            /**
+                获取指定长度的，内容是随机数字的数组
+            */
+            function getRandomArray(length, /*optional*/ min, /*optional*/ max) {
+                if (!arguments.length) 
+                    throw new TypeError("Failed to execute 'getRandomArray':  At least 1 argument required, but only 0 present.")
+                if (typeof length !== 'number' || isNaN(length) || !isFinite(length) || length < 0) 
+                    throw new TypeError("Failed to execute 'getRandomArray': length error.")   
+
+                const MINIMUM = 0, MAXIMUM = 100
+                min = (typeof min === 'number' && !isNaN(min) && isFinite(min)) ? min : MINIMUM
+                max = (typeof max === 'number' && !isNaN(max) && isFinite(max)) ? max : MAXIMUM
+
+                if (max < min) 
+                    throw new RangeError("Failed to execute 'getRandomArray': max < min.")
+            
+                for (var arr = [], i = 0; i < length; i++) {
+                    var randomNum = ~~(Math.random() * (max - min + 1) + min)
+                    while (arr.indexOf(randomNum) !== -1) {
+                        randomNum = ~~(Math.random() * (max - min + 1) + min)
+                    }
+                    arr.push(randomNum)
+                }
+
+                return arr
+            }
+
+            function renderHtml(arr) {
+                if(!Array.isArray(arr)) 
+                    throw new TypeError("Failed to execute 'bubbleSort': argument type error.")
+                var container = document.getElementById('container')
+                for (var i = 0; i < arr.length; i++) {
+                    var b = document.createElement('b')
+                    b.innerText = arr[i]
+                    var li = document.createElement('li')
+                    li.className = 'item'
+                    li.style.height = arr[i] + "px"
+                    li.style.marginTop = (container.clientHeight - arr[i]) + "px"
+                    li.setAttribute('id', "item"+i)
+                    li.appendChild(b)
+                    container.appendChild(li)
+                }
+            }
+
+            function bubbleSort(arr) {
+                if(!Array.isArray(arr)) 
+                    throw new TypeError("Failed to execute 'bubbleSort': argument type error.")
+                var container = document.getElementById('container')
+                var items = document.getElementsByClassName('item')
+
+                for (var i = 0, len = arr.length - 1; i < len; i++) {
+                    (function(x){
+                        // 去掉外层循环的样式
+                        setTimeout(function(){
+                            for (var j = 0; j < len - x; j++) {
+                                (function(y){
+                                    setTimeout(function(){ 
+                                        for (var w = 0; w < items.length; w++) {
+                                            items[w].style.background = '#ACD6E5'
+                                        }
+                                        var current = document.getElementById("item"+y)
+                                        current.style.background = '#34CA4A'
+                                        var next = document.getElementById("item"+(y+1))
+                                        next.style.background = '#E85958'
+                                        if (arr[y] > arr[y+1]) {
+                                            arr[y] = arr[y] ^ arr[y+1]
+                                            arr[y+1] = arr[y] ^ arr[y+1]
+                                            arr[y] = arr[y] ^ arr[y+1]                           
+                                            container.insertBefore(next,current)
+                                            next.id = 'item' + y
+                                            current.id = 'item' + (y+1)
+                                        }
+                                    },1e3 * y)
+                                })(j)
+                            }
+                        },((len + 1) * 1e3 * x) - (x * 1e3))
+                    })(i)
+                }
+            }
+
+            var arr = getRandomArray(15,20,220)
+            renderHtml(arr)
+            bubbleSort(arr)      
+        })()
+    </script>
+</body>
+</html>
