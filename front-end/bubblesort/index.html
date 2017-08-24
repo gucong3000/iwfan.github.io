@@ -60,6 +60,7 @@
                 return arr
             }
 
+            // 渲染页面
             function renderHtml(arr) {
                 if(!Array.isArray(arr)) 
                     throw new TypeError("Failed to execute 'bubbleSort': argument type error.")
@@ -82,36 +83,44 @@
                     throw new TypeError("Failed to execute 'bubbleSort': argument type error.")
                 var container = document.getElementById('container')
                 var items = document.getElementsByClassName('item')
-
-                for (var i = 0, len = arr.length - 1; i < len; i++) {
-                    (function(x){
+                var time = 0
+                for (var i = 0, len1 = arr.length, len = arr.length - 1; i < len; i++,len1--) {
+                    //  处理时间累加  0 + len + (len - 1) + (len - 2) + (len - 3) + ...
+                    if (i === 0) {
+                        time = 0
+                    } else {
+                        time += len1
+                    }
+                    // 闭包传值
+                    (function(x){ 
                         setTimeout(function(){
                             for (var j = 0; j < len - x; j++) {
                                 (function(y){
                                     setTimeout(function(){ 
+                                        // 清除之前的样式
                                         for (var w = 0; w < items.length; w++) {
                                             items[w].style.background = '#ACD6E5'
                                         }
+                                        // 添加新的样式
                                         var current = document.getElementById("item"+y)
                                         current.style.background = '#34CA4A'
                                         var next = document.getElementById("item"+(y+1))
                                         next.style.background = '#E85958'
+                                        // 条件成立，则开始换位
                                         if (arr[y] > arr[y+1]) {
                                             arr[y] = arr[y] ^ arr[y+1]
                                             arr[y+1] = arr[y] ^ arr[y+1]
                                             arr[y] = arr[y] ^ arr[y+1]                           
                                             container.insertBefore(next,current)
+                                            // id 也需要换
                                             next.id = 'item' + y
                                             current.id = 'item' + (y+1)
                                         }
-                                    },1e3 * y)                                
+                                    },1e3 * y)                       
                                 })(j)
                             }
-                        },((len * x) - (x-1)) * 1e3)
+                        },time * 1e3)
                     })(i)
-                }
-                for (var w = 0; w < items.length; w++) {
-                    items[w].style.background = '#ACD6E5'
                 }
             }
 
