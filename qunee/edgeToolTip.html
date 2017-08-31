@@ -159,14 +159,14 @@
             graph.minScale = 1.5
             graph.maxScale = 1.5
             graph.scale = 1.5
-            var BS = graph.createNode("基站",-200, -100)
+            var BS = graph.createNode("RedWin5000 HBS5025E 基站",-200, -100)
             BS.image = Q.Graphs.server
             BS.movable = false
-            var SU = graph.createNode("远端",200, -100)
+            var SU = graph.createNode("RedWin5000 HSU510E 远端",200, -100)
             SU.movable = false
-            var edge = graph.createEdge("", BS, SU)
-            edge.setStyle(Q.Styles.ARROW_TO, false)
-            edge.setStyle(Q.Styles.EDGE_LINE_DASH, [8, 4, 0.01, 4])
+            // var edge = graph.createEdge("", BS, SU)
+            // edge.setStyle(Q.Styles.ARROW_TO, false)
+            // edge.setStyle(Q.Styles.EDGE_LINE_DASH, [8, 4, 0.01, 4])
 
             graph.getTooltip = function (element) {
                 if (element instanceof Q.Node && !element.groupType) {
