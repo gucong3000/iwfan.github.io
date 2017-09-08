@@ -1,5 +1,18 @@
-.banner { position: absolute; width: 960px; height: 360px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ccc; }
+body { margin: 0; background: #eee; }
 
 img { display: block; width: 100%; }
+
+ul { list-style-type: none; padding: 0; margin: 0; }
+
+.silder { position: absolute; width: 960px; height: 360px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 15px solid #fff; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2); -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; overflow: hidden; }
+.silder-container { width: 500%; height: 100%; font-size: 0px; position: absolute; top: 0; left: 0; z-index: 1; }
+.silder-container-item { width: 20%; height: 100%; display: inline-block; }
+.silder-shade { width: 100%; height: 100%; position: absolute; z-index: 2; }
+.silder-pager { opacity: 0; transition: opacity .5s; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; height: 70px; z-index: 3; }
+.silder-pager-left, .silder-pager-right { display: block; width: 35px; height: 100%; position: relative; background: rgba(0, 0, 0, 0.5); }
+.silder-pager-left::before, .silder-pager-right::before { content: ""; display: block; width: 25px; height: 25px; border: none; border-top: 2px solid #bbb; border-left: 2px solid #bbb; transform: translateY(-50%) rotate(-45deg); position: absolute; top: 50%; left: 30%; }
+.silder-pager-left:hover::before, .silder-pager-right:hover::before { border-top: 2px solid #fff; border-left: 2px solid #fff; }
+.silder-pager-left { float: left; }
+.silder-pager-right { float: right; }
 
 /*# sourceMappingURL=index.css.map */
