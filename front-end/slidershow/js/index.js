@@ -13,21 +13,19 @@ window.onload = function() {
 
     var globalAnimateTimer = null
     var slowAnimateTimer = null
+    
     /**
      * 轮播移动每一下的动画效果
-     * @param {*} silder       轮播DOM
      * @param {*} index        移至第几张
-     * @param {*} silderStep   移动长度步增
-     * @param {*} callback     移完回调
-     * @param {*} step         移动动画步增
+     * @param {*} speed         移动动画步增
      */
-    function moveSilderShow(index) {
+    function moveSilderShow(index, speed = 8) {
         if (slowAnimateTimer) {
             clearInterval(slowAnimateTimer)
         }
         var end = -(index * silderStep)
         slowAnimateTimer = setInterval(() => {
-            var step = (end - silder.offsetLeft) / 8
+            var step = (end - silder.offsetLeft) / speed
             step = step > 0 ? Math.ceil(step) : Math.floor(step)
             silder.style.left = (silder.offsetLeft + step) + "px"
             if (silder.offsetLeft === end) {
@@ -49,23 +47,13 @@ window.onload = function() {
             })
         }
     }
-    /**
-     * 改变DOM结构
-     * @param {*} flag true 向左 false 向右
-     */
-    function changeSilderDom(flag) {
-        if (flag) {
-            silder.insertBefore(silder.lastElementChild, silder.firstElementChild)
-        } else {
-            silder.appendChild(silder.firstChild)
-        }
-    }
+
+    moveSilderShow(silderIndex + 1, 1)
 
     left.onclick = function(e) {
         silderIndex === 0 ? silderIndex = 4 : silderIndex--
         pagerItemIndex = pagerItemIndex === 0 ? 4 : pagerItemIndex - 1
         moveSilderShow(silderIndex)
-        // changeSilderDom(true)
         addPageIndexItemStyle(silderIndex)
     }
 
@@ -73,7 +61,6 @@ window.onload = function() {
         silderIndex === 4 ? silderIndex = 0 : silderIndex++
         pagerItemIndex = pagerItemIndex === 4 ? 0 : pagerItemIndex + 1
         moveSilderShow(silderIndex)
-        // changeSilderDom(false)
         addPageIndexItemStyle(silderIndex)
         
     }
@@ -87,9 +74,8 @@ window.onload = function() {
         }
     }
     var flag = true
-    initGlobalTimer()
+    // initGlobalTimer()
     function initGlobalTimer() {
-        console.log(1)
         globalAnimateTimer = setInterval(() => {
             if (silderIndex === 0) {
                 flag = true
@@ -104,25 +90,13 @@ window.onload = function() {
             }
             moveSilderShow(silderIndex)
             addPageIndexItemStyle(silderIndex)
-        }, 2e3)
+        }, 5e3)
     }
 
     var wrapper = document.querySelector('.wrapper')
-    wrapper.onmouseover = (e) => {
-        console.log("1", e.target)
-        clearInterval(globalAnimateTimer)
+    wrapper.onmouseenter = (e) => {
+        // clearInterval(globalAnimateTimer)
     }
 
-    wrapper.onmouseout = (e) => {
-        console.log("2", e.target)
-        if (e.target.className === 'silder') {
-            initGlobalTimer()
-        }
-    }
-
-    // var timer = setInterval(() => {
-    //     leader = leader + (target - leader) / 8;
-    //     silder.style.left = leader + "px"
-    // }, 1e3/30)
-    
+    // wrapper.onmouseleave = initGlobalTimer
 }
