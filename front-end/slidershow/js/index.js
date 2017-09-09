@@ -1,37 +1,46 @@
 window.onload = function() {
-    
-    var currentIndex = 0, step = 960
-    var silder = document.querySelector('.silder-container')
-    var left = document.querySelector('.silder-pager-left')
-    var right = document.querySelector('.silder-pager-right')
-    var pagerIndex = document.querySelector('.silder-index')
-    var leader = 0, target = 0
-    left.onclick = function(e) {
-        if (currentIndex === 0) return
-        currentIndex-- 
-        leader = parseInt(silder.style.left)
-        target = -(step * currentIndex)
-        addPageIndexItemStyle(currentIndex)
-    }
 
-    right.onclick = function(e) {
-        if (currentIndex === 4) return
-        currentIndex++ 
-        leader = parseInt(silder.style.left)
-        target = -(step * currentIndex)
-        addPageIndexItemStyle(currentIndex)
-    }
+    var container = document.querySelector('.silder')               // 外层容器
+    var silderStep = container.clientWidth;                         // 步增量
+    var silderIndex = 0;                                            // 图片索引
 
-    pagerIndex.onclick = function(e) {
-        if (e.target instanceof HTMLLIElement) {
-            var i  = Array.from(e.target.parentNode.children).indexOf(e.target)
-            leader = parseInt(silder.style.left)
-            target = -(step * i)
-            addPageIndexItemStyle(i)
+    var silder = document.querySelector('.silder-container')        // 轮播
+    var left = document.querySelector('.silder-pager-left')         // 上一张
+    var right = document.querySelector('.silder-pager-right')       // 下一张
+
+    var pagerIndex = document.querySelector('.silder-index')        // 分页容器
+    var pagerItemIndex = silderIndex - 1                            // 分页项索引
+
+    var globalAnimateTimer = null
+    var slowAnimateTimer = null
+    /**
+     * 轮播移动每一下的动画效果
+     * @param {*} silder       轮播DOM
+     * @param {*} index        移至第几张
+     * @param {*} silderStep   移动长度步增
+     * @param {*} callback     移完回调
+     * @param {*} step         移动动画步增
+     */
+    function moveSilderShow(index) {
+        if (slowAnimateTimer) {
+            clearInterval(slowAnimateTimer)
         }
+        var end = -(index * silderStep)
+        slowAnimateTimer = setInterval(() => {
+            var step = (end - silder.offsetLeft) / 8
+            step = step > 0 ? Math.ceil(step) : Math.floor(step)
+            silder.style.left = (silder.offsetLeft + step) + "px"
+            if (silder.offsetLeft === end) {
+                clearInterval(slowAnimateTimer)
+                slowAnimateTimer = null
+            }
+        }, 1e3/30)     // 30帧的动画
     }
 
-    addPageIndexItemStyle(currentIndex)
+    /**
+     * 分页项的样式
+     * @param {*} index    
+     */
     function addPageIndexItemStyle(index) {
         var items = document.querySelectorAll('.silder-index-item')
         if (items && items.length) {
@@ -40,38 +49,80 @@ window.onload = function() {
             })
         }
     }
-
-    var timer = setInterval(() => {
-        leader = leader + (target - leader) / 10;
-        silder.style.left = leader + "px"
-    }, 30)
-    
-
-
     /**
-     * 
-     *  function $(id) {
-        	 return document.getElementById(id);
-        }
-        // 找元素
-        var timer = null;
-        var leader = 0; // 开始的值
-        var target = 500; // 最终的值
-        $("btn").onclick = function() {
-        	 setInterval(function() {
-                // leader 以先快后慢变化 
-                // leader 0+50
-                // leader 50+(500-50)/10 = 50+45 
-                // leader 50+45+(500-95) /10 = 50+45+40.5   
-                leader = leader + (target - leader) / 10;
-                $("box").style.left = leader + "px";
-
-             }, 30);
-        }
-        // 闪动
-        $("btn").onclick = function() {
-            $("box").style.left = "500px";
-        }
- 
+     * 改变DOM结构
+     * @param {*} flag true 向左 false 向右
      */
+    function changeSilderDom(flag) {
+        if (flag) {
+            silder.insertBefore(silder.lastElementChild, silder.firstElementChild)
+        } else {
+            silder.appendChild(silder.firstChild)
+        }
+    }
+
+    left.onclick = function(e) {
+        silderIndex === 0 ? silderIndex = 4 : silderIndex--
+        pagerItemIndex = pagerItemIndex === 0 ? 4 : pagerItemIndex - 1
+        moveSilderShow(silderIndex)
+        // changeSilderDom(true)
+        addPageIndexItemStyle(silderIndex)
+    }
+
+    right.onclick = function(e) {
+        silderIndex === 4 ? silderIndex = 0 : silderIndex++
+        pagerItemIndex = pagerItemIndex === 4 ? 0 : pagerItemIndex + 1
+        moveSilderShow(silderIndex)
+        // changeSilderDom(false)
+        addPageIndexItemStyle(silderIndex)
+        
+    }
+
+    pagerIndex.onmouseover = function(e) {
+        if (e.target instanceof HTMLLIElement) {
+            var i  = Array.from(e.target.parentNode.children).indexOf(e.target)
+            silderIndex = i
+            moveSilderShow(silderIndex)
+            addPageIndexItemStyle(silderIndex)
+        }
+    }
+    var flag = true
+    initGlobalTimer()
+    function initGlobalTimer() {
+        console.log(1)
+        globalAnimateTimer = setInterval(() => {
+            if (silderIndex === 0) {
+                flag = true
+            }
+            if (silderIndex === 4) {
+                flag = false
+            }
+            if (flag) {
+                silderIndex++
+            } else {
+                silderIndex--
+            }
+            moveSilderShow(silderIndex)
+            addPageIndexItemStyle(silderIndex)
+        }, 2e3)
+    }
+
+    var wrapper = document.querySelector('.wrapper')
+    wrapper.onmouseover = (e) => {
+        console.log("1", e.target)
+        clearInterval(globalAnimateTimer)
+    }
+
+    wrapper.onmouseout = (e) => {
+        console.log("2", e.target)
+        if (e.target.className === 'silder') {
+            initGlobalTimer()
+        }
+    }
+
+    // var timer = setInterval(() => {
+    //     leader = leader + (target - leader) / 8;
+    //     silder.style.left = leader + "px"
+    // }, 1e3/30)
+    
 }
