@@ -4,24 +4,34 @@ window.onload = function() {
     var silder = document.querySelector('.silder-container')
     var left = document.querySelector('.silder-pager-left')
     var right = document.querySelector('.silder-pager-right')
- 
+    var pagerIndex = document.querySelector('.silder-index')
+    var leader = 0, target = 0
     left.onclick = function(e) {
         if (currentIndex === 0) return
         currentIndex-- 
-        // silder.style.left = (-960 * currentIndex) + "px"
+        leader = parseInt(silder.style.left)
+        target = -(step * currentIndex)
         addPageIndexItemStyle(currentIndex)
     }
 
     right.onclick = function(e) {
         if (currentIndex === 4) return
         currentIndex++ 
-        // silder.style.left = (-960 * currentIndex) + "px"
+        leader = parseInt(silder.style.left)
+        target = -(step * currentIndex)
         addPageIndexItemStyle(currentIndex)
     }
 
+    pagerIndex.onclick = function(e) {
+        if (e.target instanceof HTMLLIElement) {
+            var i  = Array.from(e.target.parentNode.children).indexOf(e.target)
+            leader = parseInt(silder.style.left)
+            target = -(step * i)
+            addPageIndexItemStyle(i)
+        }
+    }
+
     addPageIndexItemStyle(currentIndex)
-
-
     function addPageIndexItemStyle(index) {
         var items = document.querySelectorAll('.silder-index-item')
         if (items && items.length) {
@@ -32,12 +42,12 @@ window.onload = function() {
     }
 
     var timer = setInterval(() => {
-        var leader = parseInt(silder.style.left)
-        var target = -(step * currentIndex)
         leader = leader + (target - leader) / 10;
         silder.style.left = leader + "px"
     }, 30)
     
+
+
     /**
      * 
      *  function $(id) {
