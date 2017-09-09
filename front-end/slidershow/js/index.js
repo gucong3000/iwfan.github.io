@@ -93,7 +93,7 @@ window.onload = function() {
         }
     }
     var flag = true
-    initGlobalTimer()
+    // initGlobalTimer()
     function initGlobalTimer() {
         globalAnimateTimer = setInterval(() => {
             if (silderIndex === 0) {
@@ -114,8 +114,8 @@ window.onload = function() {
 
     var wrapper = document.querySelector('.wrapper')
     wrapper.onmouseenter = (e) => {
-        clearInterval(globalAnimateTimer)
+        // clearInterval(globalAnimateTimer)
     }
 
-    wrapper.onmouseleave = initGlobalTimer
+    // wrapper.onmouseleave = initGlobalTimer
 }
