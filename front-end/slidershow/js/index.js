@@ -2,7 +2,7 @@ window.onload = function() {
 
     var container = document.querySelector('.silder')               // 外层容器
     var silderStep = container.clientWidth;                         // 步增量
-    var silderIndex = 0;                                            // 图片索引
+    var silderIndex = 1;                                            // 图片索引
 
     var silder = document.querySelector('.silder-container')        // 轮播
     var left = document.querySelector('.silder-pager-left')         // 上一张
@@ -13,13 +13,14 @@ window.onload = function() {
 
     var globalAnimateTimer = null
     var slowAnimateTimer = null
-    
+
     /**
      * 轮播移动每一下的动画效果
      * @param {*} index        移至第几张
      * @param {*} speed         移动动画步增
      */
-    function moveSilderShow(index, speed = 8) {
+    function moveSilderShow(index, callback, speed = 8) {
+        console.log(silderIndex)
         if (slowAnimateTimer) {
             clearInterval(slowAnimateTimer)
         }
@@ -31,6 +32,7 @@ window.onload = function() {
             if (silder.offsetLeft === end) {
                 clearInterval(slowAnimateTimer)
                 slowAnimateTimer = null
+                if (callback) {callback()}
             }
         }, 1e3/30)     // 30帧的动画
     }
@@ -48,21 +50,38 @@ window.onload = function() {
         }
     }
 
-    moveSilderShow(silderIndex + 1, 1)
-
-    left.onclick = function(e) {
-        silderIndex === 0 ? silderIndex = 4 : silderIndex--
+    left.addEventListener('click', moveSliderToLeft)
+    function moveSliderToLeft() {
+        silderIndex === -1 ? silderIndex = 6 : silderIndex--
+        if (silderIndex === 0) {
+            left.removeEventListener('click', moveSliderToLeft)
+        }
+        moveSilderShow(silderIndex,() => {
+            if (silderIndex === 0) {
+                silderIndex = 5
+                silder.style.left = -(silderIndex * silderStep) + "px"
+                left.addEventListener('click', moveSliderToLeft)
+            }
+        })
         pagerItemIndex = pagerItemIndex === 0 ? 4 : pagerItemIndex - 1
-        moveSilderShow(silderIndex)
-        addPageIndexItemStyle(silderIndex)
+        addPageIndexItemStyle(pagerItemIndex)
     }
 
-    right.onclick = function(e) {
-        silderIndex === 4 ? silderIndex = 0 : silderIndex++
+    right.addEventListener('click', moveSliderToRight)
+    function moveSliderToRight() {
+        silderIndex === 7 ? silderIndex = 1 : silderIndex++
+        if (silderIndex === 6) {
+            right.removeEventListener('click', moveSliderToRight)
+        }
+        moveSilderShow(silderIndex,() => {
+            if (silderIndex === 6) {
+                silderIndex = 1
+                silder.style.left = -(silderIndex * silderStep) + "px"
+                right.addEventListener('click', moveSliderToRight)
+            }
+        })
         pagerItemIndex = pagerItemIndex === 4 ? 0 : pagerItemIndex + 1
-        moveSilderShow(silderIndex)
-        addPageIndexItemStyle(silderIndex)
-        
+        addPageIndexItemStyle(pagerItemIndex)
     }
 
     pagerIndex.onmouseover = function(e) {
@@ -74,7 +93,7 @@ window.onload = function() {
         }
     }
     var flag = true
-    // initGlobalTimer()
+    initGlobalTimer()
     function initGlobalTimer() {
         globalAnimateTimer = setInterval(() => {
             if (silderIndex === 0) {
@@ -90,13 +109,13 @@ window.onload = function() {
             }
             moveSilderShow(silderIndex)
             addPageIndexItemStyle(silderIndex)
-        }, 5e3)
+        }, 1e3)
     }
 
     var wrapper = document.querySelector('.wrapper')
     wrapper.onmouseenter = (e) => {
-        // clearInterval(globalAnimateTimer)
+        clearInterval(globalAnimateTimer)
     }
 
-    // wrapper.onmouseleave = initGlobalTimer
+    wrapper.onmouseleave = initGlobalTimer
 }
