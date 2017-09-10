@@ -7,7 +7,6 @@
     var pagerPrev = null
     var pagerNext = null
     var pagerItem = null
-    var sliderIndex = 1
     var sliderMoveStep = 0
     var slowAnimateFlag = true
     var autoPlayTimer = null
@@ -135,8 +134,8 @@
 
     function setListener() {
         if (!pagerPrev || !pagerNext || !pagerItem) return
-        pagerPrev.addEventListener('click', e => {sliderIndex--; moveSlider(sliderMoveStep)})
-        pagerNext.addEventListener('click', e => {sliderIndex++; moveSlider(-sliderMoveStep)})
+        pagerPrev.addEventListener('click', e => { moveSlider(sliderMoveStep)})
+        pagerNext.addEventListener('click', e => { moveSlider(-sliderMoveStep)})
         Array.prototype.forEach.call(pagerItem.querySelectorAll('.mySlider-pager-item'), function(e, i) {
             e.addEventListener('mouseenter', e => {
                 var index = e.target.getAttribute('pagerIndex')
