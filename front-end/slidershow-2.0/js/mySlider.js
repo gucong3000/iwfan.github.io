@@ -9,7 +9,8 @@
     var pagerItem = null
     var sliderIndex = 1
     var sliderMoveStep = 0
-    var slowAnimateTimer = null
+    var slowAnimateFlag = true
+    var autoPlayTimer = null
 
     function init(c, d) {
         container = document.querySelector(c)
@@ -142,43 +143,41 @@
                 moverTo(index)
             })
        })
-    }
-
-    function slowAnimate(offset, speed = 8) {
-        if (slowAnimateTimer) {
-            clearInterval(slowAnimateTimer)
-        }
-        var end = globalSliderShow.offsetLeft + offset
-        slowAnimateTimer = setInterval(() => {
-            var step = (end - globalSliderShow.offsetLeft) / speed
-            step = step > 0 ? Math.ceil(step) : Math.floor(step)
-            globalSliderShow.style.left = (globalSliderShow.offsetLeft + step) + "px"
-            if (globalSliderShow.offsetLeft === end) {
-                clearInterval(slowAnimateTimer)
-                slowAnimateTimer = null
-            }
-        }, 1e3/30)     // 30帧的动画
+       globalSlider.addEventListener('mouseenter', e => {
+           stopPlay() 
+       })
+       globalSlider.addEventListener('mouseleave', e => {
+           autoPlay()
+       })
+       autoPlay()
     }
 
     function moveSlider(offset) {
-        var totalTime = 300
-        var repeat = 10
-        var interval = totalTime / repeat
+        if (!slowAnimateFlag) return
+        var totalTime = 500
+        var interval = 10
+        var speed = offset / (totalTime / interval)
         
         var count = getSliderCount()
-        var start = globalSliderShow.offsetLeft
-        var end = start + offset
-
-        // slowAnimate(offset)
-        globalSliderShow.style.left = end + "px"
-
-        if (globalSliderShow.offsetLeft > -sliderMoveStep) {
-            globalSliderShow.style.left = -(count * sliderMoveStep) + "px"
-        } else if (globalSliderShow.offsetLeft < -(count * sliderMoveStep)) {
-            globalSliderShow.style.left = -(1 * sliderMoveStep) + "px"
+        var end = globalSliderShow.offsetLeft + offset
+        function animate() {
+            slowAnimateFlag = false
+            if ((speed > 0 && globalSliderShow.offsetLeft < end)
+                || (speed < 0 && globalSliderShow.offsetLeft > end)) {
+                globalSliderShow.style.left = globalSliderShow.offsetLeft + speed + "px"
+                setTimeout(animate, interval);
+            } else {
+                slowAnimateFlag = true
+                globalSliderShow.style.left = end + "px"
+                if (globalSliderShow.offsetLeft > -sliderMoveStep) {
+                    globalSliderShow.style.left = -(count * sliderMoveStep) + "px"
+                } else if (globalSliderShow.offsetLeft < -(count * sliderMoveStep)) {
+                    globalSliderShow.style.left = -(1 * sliderMoveStep) + "px"
+                }
+                setPagerItemStyle(globalSliderShow.offsetLeft * -1 / sliderMoveStep)
+            }
         }
-
-        setPagerItemStyle(globalSliderShow.offsetLeft * -1 / sliderMoveStep)
+        animate()
     }
 
     function moverTo(index) {
@@ -186,5 +185,14 @@
         moveSlider(offset)
     }
 
+    function autoPlay() {
+        autoPlayTimer = setInterval(() => {
+            pagerNext.click()
+        }, 2e3)
+    }
+
+    function stopPlay() {
+        clearInterval(autoPlayTimer)
+    }
     window.mySlider = {init:init}
 })()
