@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            width: 300px;
+            height: 500px;
+            position: relative;
+            float: left;
+            cursor: move;
+            overflow: hidden;
+        }
+        .wrapper img {
+            display: block;
+            position: absolute;
+            z-index: 1;
+        }
+        .wrapper .susbox {
+            position: absolute;
+            z-index: 2;
+            width: 100px;
+            height: 100px;
+            background: url(x.png) left top repeat;
+            display: none;
+        }
+        .magifyglass {
+            display: none;
+            margin-left: 20px;
+            width: 300px;
+            height: 300px;
+            border: 1px dashed #ccc;
+            position: absolute;
+            overflow: hidden;
+            left: 350px;
+        }
+        .magifyglass img {
+            position: absolute;
+            display: block;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <img src="casfra.JPEG" alt="">
+        <div class="susbox"></div>
+    </div>
+    <div class="magifyglass">
+        <img src="casfra.JPEG" width="300%" alt="">
+    </div>  
+
+    <script>
+    window.onload = function() {
+        var wrapper = document.querySelector('.wrapper')
+        var susbox = document.querySelector('.susbox')
+        var magifyglass = document.querySelector('.magifyglass')
+        var img = document.querySelector('.wrapper img')
+        var img2 = document.querySelector('.magifyglass img')
+        wrapper.addEventListener('mouseenter', function(e) {
+            susbox.style.display = 'block'
+            magifyglass.style.display = 'block'
+        })
+
+        wrapper.addEventListener('mouseleave', function(e) {
+            susbox.style.display = 'none'
+            magifyglass.style.display = 'none'
+        })
+
+        wrapper.addEventListener('mousemove', function(e) {
+            var x = e.clientX - wrapper.offsetLeft - (susbox.offsetWidth / 2)
+            var y = e.clientY - wrapper.offsetTop - (susbox.offsetHeight / 2)
+
+            var width = wrapper.offsetWidth - susbox.offsetWidth
+            var height = wrapper.offsetHeight - susbox.offsetHeight
+
+            if (x < 0) {
+                x = 0
+            } else if (x > width) {
+                x = width
+            }
+
+            if (y < 0) {
+                y = 0
+            } else if (y > height) {
+                y = height
+            }
+
+            susbox.style.left = x + "px"
+            susbox.style.top = y + "px"
+
+            img2.style.left = -3*x + "px"
+            img2.style.top = -3*y + "px"
+        })
+
+    }
+    </script>
+</body>
+</html>
