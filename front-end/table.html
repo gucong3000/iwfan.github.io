@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: "PingFang SC","Microsoft YaHei",sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+            color: #666;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        h2, h4 {
+            margin: 0;
+        }
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .table {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 500px;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .table header {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-bottom: 1px solid #ddd;
+        }
+        .table table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .table table thead th {
+            background:#efefef;
+        }
+        .table table tr {
+            height: 40px;
+        }
+        .table table tr:nth-child(even){
+            /* background: #efefef; */
+        }
+        .table table th:not(:first-child),
+        .table table td:not(:first-child){
+            border-left: 1px solid #ddd;
+        }
+        .table table tbody tr {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        .table table tbody tr:hover td {
+            background:#FFFFDD;
+        }
+        .table table tbody tr td:last-child a {
+            color: #E9686B;
+        }
+        .table table tfoot td a {
+            color:#0024EF
+        }
+
+        .add {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, .5);
+            display: none;
+        }
+        .add .content {
+            position: absolute;
+            z-index: 3;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .add .content ul {
+            margin: 0;
+            padding: 20px;
+            list-style-type: none;
+
+        }
+        .add .content ul li {
+            height: 50px;
+            margin: 0px 0 20px;
+        }
+        .add .content ul li input {
+            width: 330px;
+            height: 30px;
+            border: 1px solid #ddd;
+            outline: none;
+            margin: 5px 0 10px;
+            padding: 0 10px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        .add .content ul li input:focus {
+            border: 1px solid #3BB4F2;
+        }
+        .add .content footer a {
+            float: right;
+            margin-right: 30px;
+        }
+        #save {
+            color: #0024EF
+        }
+        #cancle {
+            color: #E9686B;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="table">
+        <header> <h2>乱七八糟的表</h2> </header>
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>课程</th>
+                    <th>姓名</th>
+                    <th>成绩</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>HTML</td>
+                    <td>王凡</td>
+                    <td>0</td>
+                    <td><a href="javascript:void(0)">删除</a></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>HTML</td>
+                    <td>王凡</td>
+                    <td>0</td>
+                    <td><a href="javascript:void(0)">删除</a></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5"><a href="javascript:void(0)">添加一条数据</a></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="add">
+        <div class="content">
+            <ul>
+                <li>
+                    <h4>课程名称</h4>
+                    <input type="text" id="course" placeholder="请输入课程名称">
+                </li>
+                <li>
+                    <h4>姓名</h4>
+                    <input type="text" id="name" placeholder="请输入姓名">
+                </li>
+                <li>
+                    <h4>成绩</h4>
+                    <input type="text" id="score" placeholder="请输入成绩">
+                </li>
+            </ul>
+            <footer>
+                <a id="save" href="javascript:void(0)">确认</a>
+                <a id="cancle" href="javascript:void(0)">取消</a>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            $('tfoot td a').click(function(e) {
+                $('#course').val('')
+                $('#name').val('')
+                $('#score').val('')
+                $(".add").show();
+            })
+
+            $('#cancle').click(function(){
+                $(".add").hide();
+            })
+
+            $('#save').click(function(){
+                var course = $('#course').val()
+                var name = $('#name').val()
+                var score = $('#score').val()
+                var tempHtml = `
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>${course}</td>
+                    <td>${name}</td>
+                    <td>${score}</td>
+                    <td><a href="javascript:void(0)">删除</a></td>
+                </tr>
+                `
+                $('tbody').append(tempHtml)
+                $(".add").hide();
+
+                $('.table table tbody tr td:last-child a').unbind('click').on('click',function(){
+                     $(this).parent().parent().remove()
+                })
+            })
+
+
+            $('.table table tbody tr td:last-child a').unbind('click').on('click',function(){
+                $(this).parent().parent().remove()
+            })
+
+
+        })
+    </script>
+</body>
+</html>
