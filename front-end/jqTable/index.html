@@ -101,7 +101,6 @@
             margin: 0;
             padding: 20px;
             list-style-type: none;
-
         }
         .add .content ul li {
             height: 50px;
@@ -223,19 +222,32 @@
                 `
                 $('tbody').append(tempHtml)
                 $(".add").hide();
+            })
 
-                $('.table table tbody tr td:last-child a').click(function(){
-                    $(this).parent().parent().remove()
+            $(".table table tbody").delegate("tr td:last-child a","click",function(){
+                $(this).parent().parent().remove()
+            });
+
+            // 处理全选和反选
+            $("thead tr input[type='checkbox']").click(function(e){
+                var flag = true
+                if (getCheckedCount() === $(".table table tbody tr").length) {
+                    flag = false
+                }
+                $("tbody tr input[type='checkbox']").each(function(e, i) {
+                    $(this)[0].checked = flag
                 })
             })
-
-
-            $('.table table tbody tr td:last-child a').click(function(){
-                $(this).parent().parent().remove()
+            $(".table table tbody").delegate("tr td:first-child input[type='checkbox']","click",function(){
+                $("thead tr input[type='checkbox']")[0].checked = (getCheckedCount() === $(".table table tbody tr").length)  ? true : false
             })
-
-
-
+            function getCheckedCount() {
+                var count = 0
+                $("tbody tr input[type='checkbox']").each(function(e, i) {
+                    if ($(this)[0].checked) { count++ }
+                })
+                return count
+            }
 
         })
     </script>
