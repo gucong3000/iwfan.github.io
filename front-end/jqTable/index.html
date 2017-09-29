@@ -224,15 +224,17 @@
                 $('tbody').append(tempHtml)
                 $(".add").hide();
 
-                $('.table table tbody tr td:last-child a').unbind('click').on('click',function(){
-                     $(this).parent().parent().remove()
+                $('.table table tbody tr td:last-child a').click(function(){
+                    $(this).parent().parent().remove()
                 })
             })
 
 
-            $('.table table tbody tr td:last-child a').unbind('click').on('click',function(){
+            $('.table table tbody tr td:last-child a').click(function(){
                 $(this).parent().parent().remove()
             })
+
+
 
 
         })
