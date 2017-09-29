@@ -70,8 +70,12 @@
         .table table tbody tr td:last-child a {
             color: #E9686B;
         }
-        .table table tfoot td a {
+        .table table tfoot td a:first-child {
             color:#0024EF
+        }
+        .table table tfoot td a:last-child {
+            margin-left: 30px;
+            color:#E9686B
         }
 
         .add {
@@ -163,7 +167,10 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5"><a href="javascript:void(0)">添加一条数据</a></td>
+                    <td colspan="5">
+                        <a href="javascript:void(0)">添加一条数据</a>
+                        <a href="javascript:void(0)">删除选中数据</a>
+                    </td>
                 </tr>
             </tfoot>
         </table>
@@ -196,11 +203,19 @@
     <script>
         $(function(){
 
-            $('tfoot td a').click(function(e) {
+            $('tfoot td a:first-child').click(function(e) {
                 $('#course').val('')
                 $('#name').val('')
                 $('#score').val('')
                 $(".add").show();
+            })
+
+            $('tfoot td a:last-child').click(function(e) {
+                $("tbody tr input[type='checkbox']").each(function(e, i) {
+                    if ($(this)[0].checked) { 
+                        $(this).parent().parent().remove()
+                    }
+                })
             })
 
             $('#cancle').click(function(){
