@@ -22,7 +22,7 @@ dt, dd {
     border: 1px solid #eee;
 }
 .hcr:hover {
-    color: #C81623 !important;
+    color: #C81623 !important; 
 }
 .mainMenu {
     position: absolute;
