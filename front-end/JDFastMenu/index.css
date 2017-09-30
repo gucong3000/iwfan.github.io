@@ -44,10 +44,9 @@ dt, dd {
 .mMenu-item .hcr {
     color: #eee;
 }
-.mMenu-item:hover {
+.mMenu-item.active {
     background-color: #999395;
 }
-
 
 .subMenuContainer {
     position: absolute;
