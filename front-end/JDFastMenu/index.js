@@ -29,7 +29,7 @@ $(function(){
 
             activeRow = $(e.target).addClass('active')
             activeMenu = $('.subMenuContainer [data-id='+activeRow.data('id')+']')
-            activeMenu.removeClass('none')
+            activeMenu.removeClass('none') 
         })
         
 
