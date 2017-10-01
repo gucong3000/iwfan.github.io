@@ -9,14 +9,9 @@ ul {
     list-style-type: none;
 }
 a {text-decoration: none;}
-dt, dd {
-    display: inline-block;
-}
 .wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    margin: 150px auto 0;
     width: 800px;
     height: 400px;
     border: 1px solid #eee;
@@ -47,7 +42,6 @@ dt, dd {
 .mMenu-item.active {
     background-color: #999395;
 }
-
 .subMenuContainer {
     position: absolute;
     left: 200px;
@@ -58,7 +52,6 @@ dt, dd {
 .none {
     display: none;
 }
-
 .subMenu-item {
     position: absolute;
     top: 0;
@@ -68,7 +61,8 @@ dt, dd {
     background: #fff;
     box-sizing: border-box;
     padding: 20px;
-    font-size: 100px;
+    font-size: 130px;
+    font-weight: bold;
     text-align: center;
-    /* line-height: 100%; */
+    line-height: 370px;
 }
