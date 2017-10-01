@@ -1,7 +1,23 @@
 $(function(){
-    var sub = $('.subMenuContainer')
+    // 二级菜单
+    var sub = $('.subMenuContainer'),
+    // 当前激活的主菜单
+    activeRow, 
+    // 当前激活的二级菜单
+    activeMenu,
+    // 延时器
+    timer,
+    // 鼠标是否在子菜单中
+    mouseInSubMenu = false;
 
-    var activeRow, activeMenu
+    sub.on('mouseenter', function(){
+        mouseInSubMenu = true
+        console.log(mouseInSubMenu)
+    }).on('mouseleave', function() {
+        mouseInSubMenu = false
+        console.log(mouseInSubMenu)
+    })
+
     $('.wrapper')
         .mouseenter(function(e) {
             sub.removeClass('none')
@@ -19,17 +35,26 @@ $(function(){
             }
 
         })
+        // 通过事件代理的方式添加监听
         .on('mouseenter', '.mMenu-item' , function(e) {
-            if (activeRow === $(e.target)) return
-
-            if (activeRow) {
-                activeRow.removeClass('active')
-                activeMenu.addClass('none')
+            // 简单 debounce 去抖
+            if (timer) {
+                clearTimeout(timer)
             }
 
-            activeRow = $(e.target).addClass('active')
-            activeMenu = $('.subMenuContainer [data-id='+activeRow.data('id')+']')
-            activeMenu.removeClass('none') 
+            timer = setTimeout(function() {
+                // 如果鼠标在子菜单中， 则不去切换菜单
+                if (mouseInSubMenu) {
+                    return 
+                }
+                if (activeRow) {
+                    activeRow.removeClass('active')
+                    activeMenu.addClass('none')
+                }
+                activeRow = $(e.target).addClass('active')
+                activeMenu = $('.subMenuContainer [data-id='+activeRow.data('id')+']')
+                activeMenu.removeClass('none') 
+            }, 300)
         })
         
 
