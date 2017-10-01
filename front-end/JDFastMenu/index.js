@@ -12,10 +12,8 @@ $(function(){
 
     sub.on('mouseenter', function(){
         mouseInSubMenu = true
-        console.log(mouseInSubMenu)
     }).on('mouseleave', function() {
         mouseInSubMenu = false
-        console.log(mouseInSubMenu)
     })
 
     $('.wrapper')
@@ -34,9 +32,19 @@ $(function(){
                 activeMenu = null
             }
 
+            if (timer) {
+                clearTimeout(timer)
+            }
+
         })
         // 通过事件代理的方式添加监听
         .on('mouseenter', '.mMenu-item' , function(e) {
+            if (!activeRow) {
+                activeRow = $(e.target).addClass('active')
+                activeMenu = $('.subMenuContainer [data-id='+activeRow.data('id')+']').removeClass('none') 
+                return
+            }
+
             // 简单 debounce 去抖
             if (timer) {
                 clearTimeout(timer)
@@ -47,16 +55,18 @@ $(function(){
                 if (mouseInSubMenu) {
                     return 
                 }
-                if (activeRow) {
+                // 如果不加此判断，那么在鼠标脱离wrapper后会立即将activeRow置为null
+                // 此时若定时器还在运行 就会发生错误
+                // 
+                // 第二中解决方案就是 在 鼠标离开 wrapper 后，清除定时器
+                // if (activeRow) {
                     activeRow.removeClass('active')
                     activeMenu.addClass('none')
-                }
+                // }
+                
                 activeRow = $(e.target).addClass('active')
-                activeMenu = $('.subMenuContainer [data-id='+activeRow.data('id')+']')
-                activeMenu.removeClass('none') 
+                activeMenu = $('.subMenuContainer [data-id='+activeRow.data('id')+']').removeClass('none') 
             }, 300)
         })
-        
-
-
 })
+
