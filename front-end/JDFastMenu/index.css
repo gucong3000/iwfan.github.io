@@ -68,12 +68,7 @@ dt, dd {
     background: #fff;
     box-sizing: border-box;
     padding: 20px;
-}
-.subMenu-item .hcr {
-    color: #555;
-}
-
-.subMenu-item dt,
-.subMenu-item dd {
-    margin: 10px;
+    font-size: 100px;
+    text-align: center;
+    /* line-height: 100%; */
 }
