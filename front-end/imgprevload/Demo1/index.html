@@ -4,11 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>无序预加载图片</title>
+    <style>
+        .wrapper {
+            width: 960px;
+            height: 400px;
+            margin: 130px auto 0;
+            border: 1px solid #ccc;
+        }
+        .banner {
+            height: 360px;
+        }
+        .control {
+            text-align: center;
+        }
+        .control a {
+            text-decoration: none;
+            margin: 20px;
+            line-height: 40px;
+        }
+        .control a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     
+    <div class="wrapper">
+        <div class="banner">
+            <div class="loading">正在加载中。。。</div>
+            <!-- <img src="../../slidershow-2.0/image/canyon-2371497_960_720.jpg" alt="image" id="bannerImg"> -->
+        </div>
+        <div class="control">
+            <a href="javascript:;" class="prev">上一页</a>
+            <a href="javascript:;" class="next">下一页</a> 
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var images = [
+            "../../slidershow-2.0/image/canyon-2371497_960_720.jpg",
+            "../../slidershow-2.0/image/landscape-2373650_960_720.jpg",
+            "../../slidershow-2.0/image/landscape-2373651_960_720.jpg",
+            "../../slidershow-2.0/image/pyramids-2371501_960_720.jpg",
+            "../../slidershow-2.0/image/statue-of-liberty-2371500_960_720.jpg",
+        ]
 
 
+        $(function() {
+            preLoad(images, function(e){
+                console.log(this)
+            })
+
+            let index = 0;            
+            $('.prev').on('click', function(e){
+                index = Math.max(0, --index)
+                $('#bannerImg').attr('src', images[index])
+            })
+
+            $('.next').on('click', function(e){
+                index = Math.min(images.length - 1, ++index)
+                $('#bannerImg').attr('src', images[index])
+            })
+
+        })
+
+        function preLoad(images, callback) {
+            for (var i = 0; i < images.length; i++) {
+                var element = images[i];
+                var img = new Image()
+                img.onload = function(e) {
+                    callback.call(e)
+                }
+                img.onerror = function(e) {
+                    callback.call(e)
+                } 
+                img.src = element
+            }
+        }
+    </script>
 </body>
 </html>
