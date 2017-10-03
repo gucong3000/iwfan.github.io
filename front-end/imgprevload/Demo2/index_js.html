@@ -2112,12 +2112,17 @@
 
 
 			function scrollEvent() {
+				// 获取文档的滚动高度
 				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop 
+				// 获取屏幕高度
 				var vph = document.documentElement.clientHeight || document.body.clientHeight
+				// 获取侧边栏的高度
 				var sliderHeight = $('J_BdSide').clientHeight
+				// 若滚动高度➕屏幕高度大于侧边栏的高度， 则将侧边栏设置为固定定位
 				if (scrollTop + vph >= sliderHeight) {
 					$('J_BdSide').style.cssText += 'position:fixed;right:0;top:'+-(sliderHeight - vph) +"px"
 				} else {
+					// 否则恢复默认的定位
 					$('J_BdSide').style.position = 'static'
 				}
 			}
