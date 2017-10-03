@@ -2112,7 +2112,14 @@
 
 
 			function scrollEvent() {
-
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop 
+				var vph = document.documentElement.clientHeight || document.body.clientHeight
+				var sliderHeight = $('J_BdSide').clientHeight
+				if (scrollTop + vph >= sliderHeight) {
+					$('J_BdSide').style.cssText += 'position:fixed;right:0;top:'+-(sliderHeight - vph) +"px"
+				} else {
+					$('J_BdSide').style.position = 'static'
+				}
 			}
 
 		</script>
