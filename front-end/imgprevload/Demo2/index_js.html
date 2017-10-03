@@ -2106,8 +2106,13 @@
 				}
 			}
 
-			window.onscroll = function(e){
-				console.log(e, this.scrollTop)
+			addEvent(window, 'scroll', scrollEvent)
+
+			addEvent(window, 'resize', scrollEvent)
+
+
+			function scrollEvent() {
+
 			}
 
 		</script>
