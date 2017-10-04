@@ -14,10 +14,10 @@
             margin: 130px auto;
             position: relative;
             border: 1px solid #A55B5B;
+            overflow: hidden;
         }
         .wrapper .item {
             position: absolute;
-            /* float: left; */
             width: 350px;
             height: 360px;
         }
@@ -58,7 +58,34 @@
     </ul> 
 
     <script>
+        window.onload = function() {
 
+            var items = document.querySelectorAll('.item'),
+
+            imgWidth = items[0].clientWidth,
+
+            exposeWidth = 200
+
+            function initPos() {
+                for (var i = 1; i < items.length; i++) {
+                    var item = items[i];
+                    item.style.cssText += "left:"+(imgWidth+(i-1)*exposeWidth)+"px"
+                }
+            }
+            initPos()
+
+            ;[].forEach.call(items, function(e, i){
+               (function(i){
+                 items[i].addEventListener('mouseenter',function(e){
+                    initPos()
+                    for(var k = 1; k <= i; k++) {
+                        items[k].style.cssText = "left:"+(k*exposeWidth)+"px"
+                    }
+                 }, false)
+               })(i)
+            })
+
+        }
     </script>
 </body>
 </html>
