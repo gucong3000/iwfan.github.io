@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+    function onDomReady(fn) {
+        // 当前主流浏览器
+        if (document.addEventListener) {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.removeEventListener('DOMContentLoaded', arguments.callee)
+                fn();
+            }, false)
+        } else {
+            (function IEDOMContentLoaded(){
+
+                var isReady = false
+
+                function init() {
+                    if (!isReady) {
+                        isReady = true
+                        fn()
+                    }
+                }
+
+                (function IEScrollHack(){
+                    try {
+                        document.documentElement.doScroll('left')
+                    } catch (error) {
+                        setTimeout(IEScrollHack, 50)
+                        return 
+                    }
+                    init()
+                })();
+
+                document.onreadystatechange = function() {
+                    if (document.readyState === 'complete') {
+                        document.onreadystatechange = null
+                        init()
+                    }
+                }
+            })()
+        }
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
