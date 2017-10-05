@@ -68,6 +68,17 @@
     }
 
     console.log(isElement({nodeType:1}))
+
+    // 判断是否为XML文档
+    function isXML(doc) {
+        // HTML 文档是不区分大小写的
+        return doc.createElement('p').nodeName !== doc.createElement('P').nodeName
+    }
+
+    // 判断是否为HTML文档中的元素
+    function isHTMLElement(ele) {
+        return isElement(ele) && !isXML(ele.ownerDocument)
+    }
     </script>
 </head>
 <body>
