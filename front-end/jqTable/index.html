@@ -87,6 +87,7 @@
             bottom: 0;
             background: rgba(0, 0, 0, .5);
             display: none;
+            overflow: hidden;
         }
         .add .content {
             position: absolute;
@@ -195,6 +196,7 @@
             <footer>
                 <a id="save" href="javascript:void(0)">确认</a>
                 <a id="cancle" href="javascript:void(0)">取消</a>
+                <a href="javascript:;" id="move">移动</a>
             </footer>
         </div>
     </div>
@@ -262,6 +264,25 @@
                     if ($(this)[0].checked) { count++ }
                 })
                 return count
+            }
+
+
+            $('#move').on('mousedown', function(e) {
+                e.preventDefault()
+                $('.add').on('mousemove', movePanel)
+            })
+
+            $('.content').on('mouseup', function(e) {
+                $('.add').off('mousemove', movePanel)
+            })
+
+            function movePanel(e) {
+                $('.content').css({
+                    left:e.pageX,
+                    top: e.pageY
+                })
+
+               console.log($('.content')[0])
             }
 
         })
