@@ -33,23 +33,25 @@
             arr2.forEach(function(e, i) {
                 result2.push(getDataType(e))
             })
-            console.log(result1.sort().toString(), result2.sort().toString())
             return result1.sort().toString() === result2.sort().toString()
         }
 
         function getDataType(ele) {
-            switch (typeof ele) {
+            var type = typeof ele
+            switch (type) {
                 case 'object' :
                     if (ele === null) return 'null'
                     if (ele instanceof Date) return 'Date'
                     if (ele === ele.window) return 'window'
+                    return 'object'
                     break;
                 case 'number' :
                     if (isNaN(ele))  return 'NaN'
                     if (!isFinite(ele)) return 'Infinity'
+                    return 'number'
                     break;
                 default :
-                    return typeof ele;
+                    return type
             }
         }
 
