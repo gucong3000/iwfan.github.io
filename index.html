@@ -5,30 +5,70 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>JavaScript 打气球</title>
 	<style>
-		body {margin: 0; background: #ccc}
+		body {margin: 0; background: #434343; overflow: hidden;}
 		.balloon {
 			width: 80px;
 			height: 80px;
 			border-radius: 40px 40px 16px 40px;
 			transform: rotate(45deg);
-			background: #fff;
-			box-shadow: -8px -8px 80px 10px #873940 inset;
+			background: #faf9f9;
+			box-shadow: -4px -4px 40px -4px pink inset,
+						24px 24px 12px rgba(220, 150, 150, .2);
 			position: absolute;
 		}
 		.balloon::after {
 			content: "";
 			display: block;
 			position: absolute;
-			border: 10px solid transparent;
-			border-right-color: #873940;
-			right: 0px;
-			bottom: 0px;
-			border-radius:15px;
+			border: 6px solid transparent;
+			border-right-color: #dbbdbd;
+			right: -1px;
+			bottom: -1px;
+			border-radius:6px;
 			transform: rotate(45deg);
 		}
 	</style>
 </head>
 <body>
-	<div class="balloon"></div>
 </body>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var vph = document.documentElement.clientHeight
+		var vpw = document.documentElement.clientWidth
+		var bw = 80
+		var ballonData = []
+		var timer
+		addBalloon(10)
+
+		function addBalloon(num) {
+			var fragment = document.createDocumentFragment()
+			for (var i = 0; i < num; i++) {
+				var balloon = document.createElement('div')
+				balloon.classList.add('balloon')
+				balloon.style.top = vph + bw + "px"
+				balloon.style.left = 100+"px"
+				fragment.appendChild(balloon)
+				ballonData.push(balloon)
+			}
+			document.body.appendChild(fragment)
+		}
+
+		function _setInterval(fn, time) {
+			fn()
+			return setTimeout(_setInterval.bind(this, fn, time), time)
+		}
+		var count
+		timer = _setInterval(function(){
+			console.log(1)
+			count++ 
+			if (count > 50) {
+				clearTimeout(timer)
+			}
+		}, 1000/60)
+
+
+	})
+
+
+</script>
 </html>
