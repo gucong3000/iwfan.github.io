@@ -41,13 +41,35 @@
 
 		addBalloon(~~(vpw/100)+1)
 
+		document.onclick = function(e) {
+			if (e.target.classList.contains('balloon')) {
+				_setInterval(function(){
+					if (e.target.offsetTop > -bw) {
+						e.target.speed += 2
+						var cssText = "top:" + (e.target.offsetTop - e.target.speed) + "px;"
+									// + "width:" + (e.target.clientWidth-10) + "px;"
+									// + "height"+ (e.target.clientHeight-10) + "px;"
+						console.log(cssText)
+						e.target.style.cssText += cssText
+					} else {
+						destory(e.target)
+						addBalloon(1)
+					}
+				}, 1000/60)
+			}
+		}
+
 		function addBalloon(num) {
 			var fragment = document.createDocumentFragment()
 			for (var i = 0; i < num; i++) {
 				var balloon = document.createElement('div')
 				balloon.classList.add('balloon')
-				balloon.style.top = vph - bw + "px"
+				balloon.style.top = vph + bw + "px"
 				balloon.style.left = getRadomNumber(0, vpw-bw)+"px"
+				balloon.speed = (Math.random() * (4 - 3)) + 2
+				while (i > 0 && ballonData[i-1].speed === balloon.speed ) {
+					balloon.speed = (Math.random() * (4 - 3)) + 2
+				}
 				fragment.appendChild(balloon)
 				ballonData.push(balloon)
 			}
@@ -55,8 +77,20 @@
 		}
 
 		_setInterval(function(){
-
+			ballonData.forEach(function(e, i) {
+				if (e.offsetTop > -bw) {
+					e.style.top = e.offsetTop - e.speed + "px"
+				} else {
+					destory(e)
+					addBalloon(1)
+				}
+			})
 		}, 1000/60)
+
+		function destory(balloon) {
+			ballonData.slice(ballonData.lastIndexOf(balloon), 1)
+			document.body.removeChild(balloon)
+		}
 
 		function getRadomNumber(min, max) {
 			return ~~(Math.random() * (max - min + 1)) + min
