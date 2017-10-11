@@ -38,19 +38,24 @@
 		var bw = 80
 		var ballonData = []
 		var timer
-		addBalloon(10)
+
+		addBalloon(~~(vpw/100)+1)
 
 		function addBalloon(num) {
 			var fragment = document.createDocumentFragment()
 			for (var i = 0; i < num; i++) {
 				var balloon = document.createElement('div')
 				balloon.classList.add('balloon')
-				balloon.style.top = vph + bw + "px"
-				balloon.style.left = 100+"px"
+				balloon.style.top = vph - bw + "px"
+				balloon.style.left = getRadomNumber(0, vpw-bw)+"px"
 				fragment.appendChild(balloon)
 				ballonData.push(balloon)
 			}
 			document.body.appendChild(fragment)
+		}
+
+		function getRadomNumber(min, max) {
+			return ~~(Math.random() * (max - min + 1)) + min
 		}
 
 		function _setInterval(fn, time) {
