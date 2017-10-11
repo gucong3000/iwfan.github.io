@@ -15,6 +15,7 @@
 			box-shadow: -4px -4px 40px -4px pink inset,
 						24px 24px 12px rgba(220, 150, 150, .2);
 			position: absolute;
+			cursor: pointer;
 		}
 		.balloon::after {
 			content: "";
@@ -40,16 +41,18 @@
 		var timer
 
 		addBalloon(~~(vpw/100)+1)
+		var roateDate = [30, 120], count = 0
 
 		document.onclick = function(e) {
 			if (e.target.classList.contains('balloon')) {
 				_setInterval(function(){
 					if (e.target.offsetTop > -bw) {
-						e.target.speed += 2
+						count++
+						e.target.speed++
 						var cssText = "top:" + (e.target.offsetTop - e.target.speed) + "px;"
-									// + "width:" + (e.target.clientWidth-10) + "px;"
-									// + "height"+ (e.target.clientHeight-10) + "px;"
-						console.log(cssText)
+									+ "width:" + (e.target.clientWidth-3) + "px;"
+									+ "height:"+ (e.target.clientHeight-3) + "px;"
+									+ "transform:rotate("+ roateDate[count%2] +"deg)"
 						e.target.style.cssText += cssText
 					} else {
 						destory(e.target)
