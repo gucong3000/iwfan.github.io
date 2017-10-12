@@ -45,20 +45,7 @@
 
 		document.onclick = function(e) {
 			if (e.target.classList.contains('balloon')) {
-				_setInterval(function(){
-					if (e.target.offsetTop > -bw) {
-						count++
-						e.target.speed++
-						var cssText = "top:" + (e.target.offsetTop - e.target.speed) + "px;"
-									+ "width:" + (e.target.clientWidth-3) + "px;"
-									+ "height:"+ (e.target.clientHeight-3) + "px;"
-									+ "transform:rotate("+ roateDate[count%2] +"deg)"
-						e.target.style.cssText += cssText
-					} else {
-						destory(e.target)
-						addBalloon(1)
-					}
-				}, 1000/60)
+				e.target.boom = true
 			}
 		}
 
@@ -68,6 +55,7 @@
 				var balloon = document.createElement('div')
 				balloon.classList.add('balloon')
 				balloon.style.top = vph + bw + "px"
+				balloon.boom = false
 				balloon.style.left = getRadomNumber(0, vpw-bw)+"px"
 				balloon.speed = (Math.random() * (4 - 3)) + 2
 				while (i > 0 && ballonData[i-1].speed === balloon.speed ) {
@@ -82,7 +70,16 @@
 		_setInterval(function(){
 			ballonData.forEach(function(e, i) {
 				if (e.offsetTop > -bw) {
-					e.style.top = e.offsetTop - e.speed + "px"
+					if (e.boom) {
+						e.speed++
+						var cssText = "top:"+ (e.offsetTop - e.speed) + "px;"
+											+ "width:" + (e.clientWidth-3) + "px;"
+											+ "height:"+ (e.clientHeight-3) + "px;"
+											+ "transform:rotate("+ roateDate[count%2] +"deg)"
+						e.style.cssText += cssText
+					} else {
+						e.style.top = e.offsetTop - e.speed + "px"
+					}
 				} else {
 					destory(e)
 					addBalloon(1)
@@ -100,8 +97,7 @@
 		}
 
 		function _setInterval(fn, time) {
-			fn()
-			setTimeout(_setInterval.bind(this, fn, time), time)
+			fn(), setTimeout(_setInterval.bind(this, fn, time), time)
 		}
 	})
 </script>
