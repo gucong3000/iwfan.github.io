@@ -12,7 +12,7 @@
 		}
 		.wrapper {
 			list-style-type: none;
-			margin: 100px auto 0;
+			margin: 100px 10px 0;
 			padding: 0;
 			width: 640px;
 			height: 400px;
@@ -72,18 +72,36 @@
 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
 	<script>
 		$(function() {
-			$(document).on('mousedown', function(e){
-				if (e.target instanceof HTMLImageElement) {
-					e.preventDefault()
-					$(this).on('mousemove', drag)
-				}
-			}).on('mouseup', function(e) {
+			/**
+			 * 
+			 */
+
+			$(document).on('mouseup', function(e) {
 				$(this).off('mousemove', drag)
 			})
 
-			function drag(){
-				console.log(1)
+			$('.content img').on('mousedown', function(e){
+				e.preventDefault()
+				$(e.target.ownerDocument).on('mousemove', drag)
+			})
+
+			function drag(e){
+				var currPos = $(e.target).offset()
+				console.log(currPos.left, currPos.top)
+				console.log(e.pageX, e.pageY)
+
+				// console.log(currPos)
+				var deviations = {
+					x : e.pageX - currPos.left,
+					y : e.pageY - currPos.top
+				}
+				console.log(deviations.x, deviations.y)
+				console.log(e.pageX - deviations.x, e.pageY - deviations.y)
+				// e.target.parentNode.style.top = e.pageX - deviations.x, + "px"
+				// e.target.parentNode.style.left = e.pageY - deviations.y  + "px"
+				// console.log(e.target.nodeName)
 			}
+				
 		})
 	</script>
 </body>
