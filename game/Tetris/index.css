@@ -1,0 +1,12 @@
+body {
+    margin:0;
+    padding:0;
+    background: #abcdef;
+}
+.tetris {
+    overflow:hidden;
+    width:250px;
+    height:500px;
+    margin:0 auto;
+    border:1px solid #eee;
+}
