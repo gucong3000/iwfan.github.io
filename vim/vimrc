@@ -1,0 +1,118 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
+"Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"================== Settings ========================
+" 设置 jk 代替ESC
+:imap jk <Esc> 
+set linespace=1 
+set number 
+set ruler
+set laststatus=2
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+
+"showmode is useless with airline
+"set showmode
+set showcmd
+set cmdheight=1
+set scrolloff=3
+set ignorecase
+set smartcase
+set incsearch "边输入边搜索
+set hlsearch
+set nowrap
+"set cursorline
+set showmatch
+"m "匹配括号的规则，增加针对html的<>
+set matchpairs+=(:),{:},[:],<:>
+syntax enable
+syntax on
+"colorscheme molokai
+
+" 文件
+set nobackup
+set noswapfile
+set noundofile
+
+" 缩进
+set autoindent
+
+
+" 折叠
+
+
+" NERDTree
+map <C-E> :NERDTreeToggle<CR>
+" NERD Commenter
+let mapleader = ';'
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" " Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" " Align line-wise comment delimiters flush left instead of following code
+" indentation
+let g:NERDDefaultAlign = 'left'
+" " Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" " Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
+" " Allow commenting and inverting empty lines (useful when commenting a
+" region)
+let g:NERDCommentEmptyLines = 1
+" " Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" emmet
+let g:user_emmet_mode='a'
+let g:user_emmet_leader_key='<Tab>'
+" Enable just for html/css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+" airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" javascript highlight
+let b:javascript_fold=1
+let javascript_enable_domhtmlcss=1
+" ======== function =========
+function! ViewInBrower() 
+    let file = '"'.expand("%:p").'"'
+    exec ":update " . file
+    exec ":silent ! google-chrome file://". file
+endfunction
+nmap <F4> :call ViewInBrower()<CR>
+" ======== markdown ===========
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
