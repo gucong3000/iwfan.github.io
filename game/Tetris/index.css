@@ -6,7 +6,7 @@ body {
 .common {
     border:8px solid #716F6F;
     border-radius: 6px;
-    background-color: rgba(0, 0, 0, .4);
+    background-color: #242323;
 }
 .tetris {
     overflow:hidden;
@@ -15,14 +15,14 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    width:500px;
+    width:480px;
     height:550px;
     margin: auto;
 }
 .left_panel {
 	box-sizing: border-box;
 	float: left;
-	width: 315px;
+	width: 300px;
 	height: 100%;
 }
 .right_panel {
@@ -36,4 +36,18 @@ body {
 	margin-top: 10px;
 	width: 150px;
 	height: 200px;
+}
+.playbg {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	table-layout: fixed;
+}
+.playbg td {
+	width: 10px;
+	height: 10px;
+	border-radius: 3px;
+	/*border:1px solid #242323;*/
+	background: rgba(0, 0, 0, .4);
 }
