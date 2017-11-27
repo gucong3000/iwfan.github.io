@@ -50,5 +50,9 @@ body {
 	height: 10px;
 	border-radius: 3px;
 	/*border:1px solid #242323;*/
-	background: rgba(0, 0, 0, .4);
+	background: rgba(0, 0, 0, .5);
+}
+
+td:first-child {
+	background: red;
 }
